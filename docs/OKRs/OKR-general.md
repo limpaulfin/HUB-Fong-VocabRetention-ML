@@ -8,6 +8,11 @@
 4. Viết tiểu luận theo cấu trúc đã định
 5. Cập nhật số liệu thực tế vào file abstract.md (docs/tieu-luan/01-front-matter/03-abstract.md) sau khi hoàn thành phân tích dữ liệu
 6. Hoàn thiện nội dung các chương trong tiểu luận
+7. Cập nhật số liệu thực tế trong README.md và abstract.md sau khi hoàn thành phân tích dữ liệu:
+    - Số lượng học viên chính xác trong bộ dữ liệu SLAM
+    - Độ chính xác thực tế của mô hình Random Forest (hiện tại ~83%)
+    - Độ chính xác thực tế của mô hình Logistic Regression (hiện tại ~76%)
+    - Các yếu tố ảnh hưởng đến độ chính xác dựa trên phân tích feature importance
 
 ## Nhiệm vụ đã hoàn thành
 
@@ -44,6 +49,27 @@
 -   Thuật toán chính: Logistic Regression và Random Forest
 -   Đánh giá: Accuracy, Precision, Recall, F1-score, AUC-ROC
 -   Yếu tố ảnh hưởng: tỷ lệ đúng, thời gian kể từ lần thử cuối, tần suất lặp lại
+
+### File cần cập nhật số liệu thực tế
+
+1. **README.md**: Cập nhật phần Kết quả
+
+    ```markdown
+    ## Kết quả
+
+    Kết quả nghiên cứu cho thấy mô hình Random Forest đạt hiệu suất cao hơn với độ chính xác khoảng 83%, trong khi Logistic Regression đạt khoảng 76%. Các yếu tố ảnh hưởng đến độ chính xác bao gồm tần suất lặp lại và thời gian ôn tập.
+    ```
+
+2. **docs/tieu-luan/01-front-matter/03-abstract.md**: Cập nhật số liệu theo ghi chú
+    ```markdown
+    <!--
+    LƯU Ý: Cần cập nhật các số liệu thực tế sau khi hoàn thành phân tích dữ liệu:
+    1. Số lượng học viên chính xác trong bộ dữ liệu SLAM
+    2. Độ chính xác thực tế của mô hình Random Forest (hiện tại ~83%)
+    3. Độ chính xác thực tế của mô hình Logistic Regression (hiện tại ~76%)
+    4. Các yếu tố ảnh hưởng đến độ chính xác dựa trên phân tích feature importance
+    -->
+    ```
 
 ## Cấu trúc tiểu luận
 
