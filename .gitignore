@@ -66,8 +66,17 @@ venv.bak/
 
 # Project specific
 .history/
-#slam-prediction/data/dataverse_files/*.tar
-#slam-prediction/data/extracted_data/
+# Loại trừ các file dữ liệu SLAM vì kích thước quá lớn, vượt quá giới hạn của GitHub (100MB)
+slam-prediction/data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.train
+slam-prediction/data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.dev
+slam-prediction/data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.test
+slam-prediction/data/dataverse_files/data_es_en.tar/data_es_en/es_en.slam.20190204.train
+slam-prediction/data/dataverse_files/data_es_en.tar/data_es_en/es_en.slam.20190204.dev
+slam-prediction/data/dataverse_files/data_es_en.tar/data_es_en/es_en.slam.20190204.test
+slam-prediction/data/dataverse_files/data_fr_en.tar/data_fr_en/fr_en.slam.20190204.train
+slam-prediction/data/dataverse_files/data_fr_en.tar/data_fr_en/fr_en.slam.20190204.dev
+slam-prediction/data/dataverse_files/data_fr_en.tar/data_fr_en/fr_en.slam.20190204.test
+# Giữ lại các file nhỏ như .gitkeep, README, LICENSE, v.v.
 slam-prediction/dataverse_files.zip
 
 # Windows specific
