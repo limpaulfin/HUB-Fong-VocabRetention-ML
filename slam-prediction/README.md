@@ -143,11 +143,25 @@ Các đặc trưng chính được sử dụng trong mô hình:
 
 ## Giải thích kết quả
 
-Kết quả phân tích sẽ cho thấy:
+Kết quả phân tích cho thấy:
 
-1. **Tầm quan trọng của đặc trưng**: Các đặc trưng nào ảnh hưởng nhiều nhất đến khả năng ghi nhớ từ vựng.
-2. **Hiệu suất mô hình**: Mô hình nào hoạt động tốt hơn (Logistic Regression hay Random Forest).
-3. **Tương quan**: Mối quan hệ giữa các đặc trưng và khả năng ghi nhớ từ vựng.
+1. **Tầm quan trọng của đặc trưng**:
+
+    - Theo Logistic Regression: format_reverse_tap (0.4478), num_attempts (0.3922), format_listen (0.2850), và correct_ratio (0.2009) là các đặc trưng quan trọng nhất.
+    - Theo Random Forest: num_attempts (0.2059), format_reverse_tap (0.2054), correct_ratio (0.1626), và format_listen (0.1100) là các đặc trưng quan trọng nhất.
+
+2. **Hiệu suất mô hình**:
+
+    - Cả hai mô hình đều đạt hiệu suất tốt với độ chính xác khoảng 85.8%.
+    - Random Forest có hiệu suất nhỉnh hơn một chút (85.82%) so với Logistic Regression (85.80%).
+    - Mô hình Random Forest có precision cao hơn (0.8750 so với 0.5000), nhưng cả hai mô hình đều có recall thấp (khoảng 0.002).
+
+3. **Tương quan**:
+    - Tương quan với biến mục tiêu (khả năng ghi nhớ từ vựng):
+        - correct_ratio: 0.08 (tương quan dương)
+        - days: 0.00 (không có tương quan)
+        - time_since_last_attempt: -0.02 (tương quan âm yếu)
+        - num_attempts: -0.09 (tương quan âm)
 
 ## Lưu ý
 
