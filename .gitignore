@@ -83,3 +83,6 @@ slam-prediction/dataverse_files.zip
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# Cursor AI markdown files
+*.cursorai.md

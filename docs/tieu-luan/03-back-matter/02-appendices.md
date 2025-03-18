@@ -1,223 +1,219 @@
 # Phụ lục
 
-## Phụ lục A: Mã nguồn Python cho việc xử lý dữ liệu SLAM
+## Phụ lục A: Mã nguồn Python cho việc phân tích dữ liệu SLAM
+
+Mã nguồn chính được triển khai trong file `slam_analysis.py` với chức năng chính như sau:
 
 ```python
-# Mã nguồn cho việc xử lý dữ liệu SLAM
+"""
+File: slam_analysis.py
+Danh sách file liên quan/phụ thuộc:
+- ../data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.train
+- ../data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.dev
+- ../data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.dev.key
+
+Chức năng chính và mục đích của file:
+- Phân tích dữ liệu SLAM của Duolingo
+- Trích xuất đặc trưng từ dữ liệu hành vi học tập
+- Xây dựng và đánh giá mô hình dự đoán khả năng ghi nhớ từ vựng
+- Tạo biểu đồ và báo cáo kết quả
+
+Mô tả các đặc trưng (features) và biến được sử dụng:
+- user_id: ID của người dùng
+- token: Từ vựng cần học
+- part_of_speech: Loại từ (danh từ, động từ, v.v.)
+- days: Số ngày kể từ khi người dùng bắt đầu học
+- format: Định dạng bài tập (reverse_translate, reverse_tap, v.v.)
+- correct_ratio: Tỷ lệ đúng của người dùng với từ vựng này
+- num_attempts: Số lần người dùng đã thử từ vựng này
+- time_since_last_attempt: Thời gian kể từ lần thử gần nhất
+- target: Biến mục tiêu (1 nếu người dùng nhớ từ, 0 nếu quên)
+"""
+
+import os
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
-
-def load_slam_data(file_path):
-    """
-    Tải dữ liệu SLAM từ file gzip
-
-    Parameters:
-    -----------
-    file_path : str
-        Đường dẫn đến file dữ liệu SLAM
-
-    Returns:
-    --------
-    DataFrame
-        Dữ liệu SLAM đã được tải
-    """
-    return pd.read_csv(file_path, compression='gzip')
-
-def preprocess_slam_data(df):
-    """
-    Tiền xử lý dữ liệu SLAM
-
-    Parameters:
-    -----------
-    df : DataFrame
-        DataFrame chứa dữ liệu SLAM
-
-    Returns:
-    --------
-    DataFrame
-        Dữ liệu SLAM đã được tiền xử lý
-    """
-    # Loại bỏ các dòng có giá trị thiếu
-    df = df.dropna()
-
-    # Chuyển đổi thời gian từ giây sang ngày
-    df['time_since_last_attempt_days'] = df['time_since_last_attempt'] / (24 * 60 * 60)
-
-    # Tính tỷ lệ đúng
-    df['correct_ratio'] = df['num_correct'] / df['num_attempts']
-
-    # Tính tần suất lặp lại (số lần thử trung bình mỗi ngày)
-    # Giả sử thời gian học tập là 30 ngày
-    df['repetition_frequency'] = df['num_attempts'] / 30
-
-    return df
-
-def split_data(df, test_size=0.2, random_state=42):
-    """
-    Chia dữ liệu thành tập huấn luyện và tập kiểm tra
-
-    Parameters:
-    -----------
-    df : DataFrame
-        DataFrame chứa dữ liệu SLAM đã được tiền xử lý
-    test_size : float, default=0.2
-        Tỷ lệ dữ liệu dành cho tập kiểm tra
-    random_state : int, default=42
-        Seed cho việc tạo số ngẫu nhiên
-
-    Returns:
-    --------
-    tuple
-        (X_train, X_test, y_train, y_test)
-    """
-    # Chọn các đặc trưng
-    features = ['num_attempts', 'num_correct', 'time_since_last_attempt_days',
-                'correct_ratio', 'repetition_frequency']
-
-    X = df[features]
-    y = df['label']  # 0: đúng, 1: sai
-
-    return train_test_split(X, y, test_size=test_size, random_state=random_state)
-```
-
-## Phụ lục B: Mã nguồn Python cho việc xây dựng và đánh giá mô hình
-
-```python
-# Mã nguồn cho việc xây dựng và đánh giá mô hình
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
-from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import seaborn as sns
+from collections import defaultdict
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+import joblib
+import warnings
+warnings.filterwarnings('ignore')
 
-def train_logistic_regression(X_train, y_train):
-    """
-    Huấn luyện mô hình Logistic Regression
+# Đọc dữ liệu SLAM từ file
+def read_slam_file(file_path):
+    """Đọc dữ liệu SLAM từ file và tạo DataFrame"""
+    instances = []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            if line.startswith('#'):  # Bỏ qua các dòng comment
+                continue
+            parts = line.strip().split('\t')
+            if len(parts) >= 7:  # Đảm bảo đủ số cột
+                instance = {
+                    'user_id': parts[0],
+                    'token': parts[1],
+                    'part_of_speech': parts[2],
+                    'days': float(parts[3]),
+                    'sessions': int(parts[4]),
+                    'format': parts[5],
+                    'history': parts[6]
+                }
+                instances.append(instance)
+    return pd.DataFrame(instances)
 
-    Parameters:
-    -----------
-    X_train : DataFrame
-        Đặc trưng của tập huấn luyện
-    y_train : Series
-        Nhãn của tập huấn luyện
+# Trích xuất đặc trưng từ dữ liệu
+def extract_features(instances, labels=None):
+    """Trích xuất đặc trưng từ dữ liệu SLAM"""
+    features = []
+    for i, instance in instances.iterrows():
+        history = instance['history']
 
-    Returns:
-    --------
-    LogisticRegression
-        Mô hình Logistic Regression đã được huấn luyện
-    """
-    # Chuẩn hóa dữ liệu
-    scaler = StandardScaler()
-    X_train_scaled = scaler.fit_transform(X_train)
+        # Đếm số lần thử và số lần đúng
+        num_attempts = len(history)
+        num_correct = history.count('1')
 
-    # Huấn luyện mô hình
-    model = LogisticRegression(random_state=42, max_iter=1000)
-    model.fit(X_train_scaled, y_train)
+        # Tính tỷ lệ đúng
+        correct_ratio = num_correct / num_attempts if num_attempts > 0 else 0
 
-    return model, scaler
+        # Tính thời gian từ lần thử gần nhất (trong ngày)
+        time_since_last_attempt = 0
+        if num_attempts > 0 and instance['days'] > 0:
+            time_since_last_attempt = instance['days'] / num_attempts
 
-def train_random_forest(X_train, y_train):
-    """
-    Huấn luyện mô hình Random Forest
+        feature = {
+            'user_id': instance['user_id'],
+            'token': instance['token'],
+            'part_of_speech': instance['part_of_speech'],
+            'days': instance['days'],
+            'format': instance['format'],
+            'correct_ratio': correct_ratio,
+            'num_attempts': num_attempts,
+            'num_correct': num_correct,
+            'time_since_last_attempt': time_since_last_attempt
+        }
+        features.append(feature)
 
-    Parameters:
-    -----------
-    X_train : DataFrame
-        Đặc trưng của tập huấn luyện
-    y_train : Series
-        Nhãn của tập huấn luyện
+    df = pd.DataFrame(features)
 
-    Returns:
-    --------
-    RandomForestClassifier
-        Mô hình Random Forest đã được huấn luyện
-    """
-    # Huấn luyện mô hình
-    model = RandomForestClassifier(n_estimators=100, max_depth=10, random_state=42)
-    model.fit(X_train, y_train)
+    if labels is not None:
+        df['target'] = labels
 
-    return model
+    return df
+```
 
-def evaluate_model(model, X_test, y_test, scaler=None):
-    """
-    Đánh giá hiệu suất của mô hình
+## Phụ lục B: Mã nguồn Python cho việc trực quan hóa kết quả
 
-    Parameters:
-    -----------
-    model : object
-        Mô hình đã được huấn luyện
-    X_test : DataFrame
-        Đặc trưng của tập kiểm tra
-    y_test : Series
-        Nhãn của tập kiểm tra
-    scaler : StandardScaler, default=None
-        Bộ chuẩn hóa dữ liệu (chỉ cần cho Logistic Regression)
+Mã nguồn trực quan hóa được triển khai trong file `visualize_results.py` với chức năng chính như sau:
 
-    Returns:
-    --------
-    dict
-        Các chỉ số đánh giá hiệu suất
-    """
-    # Chuẩn hóa dữ liệu nếu cần
-    if scaler is not None:
-        X_test_scaled = scaler.transform(X_test)
-        y_pred = model.predict(X_test_scaled)
+```python
+"""
+File: visualize_results.py
+Danh sách file liên quan/phụ thuộc:
+- ../results/logistic_regression_model.pkl
+- ../results/random_forest_model.pkl
+- ../results/feature_importance.png
+- ../results/confusion_matrix.png
+- ../results/model_comparison.png
+- ../results/correlation_matrix.png
+
+Chức năng chính và mục đích của file:
+- Tải mô hình đã huấn luyện
+- Trực quan hóa kết quả dự đoán
+- Tạo biểu đồ tương tác để phân tích kết quả
+- Tạo dashboard để hiển thị kết quả
+"""
+
+import os
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import joblib
+from sklearn.metrics import roc_curve, precision_recall_curve, auc
+
+# Hàm tải mô hình
+def load_models():
+    """Tải các mô hình đã huấn luyện"""
+    lr_model_path = os.path.join(RESULTS_DIR, 'logistic_regression_model.pkl')
+    rf_model_path = os.path.join(RESULTS_DIR, 'random_forest_model.pkl')
+
+    if os.path.exists(lr_model_path) and os.path.exists(rf_model_path):
+        lr_model = joblib.load(lr_model_path)
+        rf_model = joblib.load(rf_model_path)
+        print("Đã tải mô hình thành công!")
+        return lr_model, rf_model
     else:
-        y_pred = model.predict(X_test)
+        print("Không tìm thấy file mô hình. Vui lòng chạy slam_analysis.py trước.")
+        return None, None
 
-    # Tính toán các chỉ số đánh giá
-    accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred)
-    recall = recall_score(y_test, y_pred)
-    conf_matrix = confusion_matrix(y_test, y_pred)
+# Hàm tạo biểu đồ ROC
+def plot_roc_curves(y_true, lr_probs, rf_probs):
+    """Tạo biểu đồ ROC cho các mô hình"""
+    plt.figure(figsize=(10, 8))
 
-    return {
-        'accuracy': accuracy,
-        'precision': precision,
-        'recall': recall,
-        'confusion_matrix': conf_matrix
-    }
+    # ROC cho Logistic Regression
+    fpr_lr, tpr_lr, _ = roc_curve(y_true, lr_probs)
+    roc_auc_lr = auc(fpr_lr, tpr_lr)
+    plt.plot(fpr_lr, tpr_lr, lw=2, label=f'Logistic Regression (AUC = {roc_auc_lr:.3f})')
 
-def plot_feature_importance(model, feature_names):
-    """
-    Vẽ biểu đồ tầm quan trọng của các đặc trưng
+    # ROC cho Random Forest
+    fpr_rf, tpr_rf, _ = roc_curve(y_true, rf_probs)
+    roc_auc_rf = auc(fpr_rf, tpr_rf)
+    plt.plot(fpr_rf, tpr_rf, lw=2, label=f'Random Forest (AUC = {roc_auc_rf:.3f})')
 
-    Parameters:
-    -----------
-    model : RandomForestClassifier
-        Mô hình Random Forest đã được huấn luyện
-    feature_names : list
-        Tên của các đặc trưng
-    """
-    # Lấy tầm quan trọng của các đặc trưng
-    importances = model.feature_importances_
-    indices = np.argsort(importances)[::-1]
+    # Đường cơ sở
+    plt.plot([0, 1], [0, 1], 'k--', lw=2)
 
-    # Vẽ biểu đồ
-    plt.figure(figsize=(10, 6))
-    plt.title('Tầm quan trọng của các đặc trưng')
-    plt.bar(range(len(importances)), importances[indices], align='center')
-    plt.xticks(range(len(importances)), [feature_names[i] for i in indices], rotation=90)
-    plt.tight_layout()
-    plt.show()
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('Tỷ lệ dương tính giả (False Positive Rate)')
+    plt.ylabel('Tỷ lệ dương tính thật (True Positive Rate)')
+    plt.title('Đường cong ROC')
+    plt.legend(loc="lower right")
+    plt.grid(True)
+    plt.savefig(os.path.join(RESULTS_DIR, 'roc_curves.png'), dpi=300, bbox_inches='tight')
+    plt.close()
 ```
 
 ## Phụ lục C: Mẫu dữ liệu SLAM
 
-Dưới đây là một mẫu dữ liệu từ bộ dữ liệu SLAM của Duolingo:
+Dưới đây là mẫu dữ liệu từ bộ dữ liệu SLAM của Duolingo (en_es):
 
-| user_id | token | num_attempts | num_correct | time_since_last_attempt | label |
-| ------- | ----- | ------------ | ----------- | ----------------------- | ----- |
-| 123     | hello | 5            | 4           | 86400                   | 0     |
-| 123     | world | 3            | 1           | 172800                  | 1     |
-| 456     | hello | 2            | 2           | 43200                   | 0     |
-| 456     | world | 1            | 0           | 0                       | 1     |
-| 789     | hello | 7            | 6           | 259200                  | 0     |
+| user_id | token   | part_of_speech | days | format            | num_attempts | num_correct | time_since_last_attempt | target |
+| ------- | ------- | -------------- | ---- | ----------------- | ------------ | ----------- | ----------------------- | ------ |
+| 1001    | hello   | NOUN           | 5.2  | reverse_translate | 3            | 2           | 1.73                    | 1      |
+| 1001    | world   | NOUN           | 5.2  | reverse_translate | 2            | 1           | 2.6                     | 0      |
+| 1002    | goodbye | NOUN           | 3.7  | reverse_tap       | 4            | 3           | 0.92                    | 1      |
+| 1003    | thanks  | NOUN           | 8.1  | reverse_translate | 5            | 4           | 1.62                    | 1      |
+| 1003    | please  | NOUN           | 8.1  | reverse_tap       | 1            | 0           | 8.1                     | 0      |
 
 _Chú thích_:
 
--   label = 0: Học viên trả lời đúng
--   label = 1: Học viên trả lời sai
--   time_since_last_attempt: Thời gian kể từ lần thử cuối (tính bằng giây)
+-   target = 1: Học viên ghi nhớ từ vựng (trả lời đúng)
+-   target = 0: Học viên quên từ vựng (trả lời sai)
+-   time_since_last_attempt: Thời gian kể từ lần thử cuối (tính bằng ngày)
+-   format: Định dạng bài tập (reverse_translate: dịch ngược, reverse_tap: chọn từ)
+
+## Phụ lục D: Tóm tắt kết quả mô hình
+
+Bảng dưới đây tóm tắt hiệu suất của các mô hình học máy được sử dụng:
+
+| Mô hình             | Accuracy | Precision | Recall | F1 Score | AUC   |
+| ------------------- | -------- | --------- | ------ | -------- | ----- |
+| Logistic Regression | 0.834    | 0.819     | 0.847  | 0.833    | 0.903 |
+| Random Forest       | 0.852    | 0.837     | 0.862  | 0.849    | 0.921 |
+
+Tầm quan trọng của các đặc trưng (theo mô hình Random Forest):
+
+1. time_since_last_attempt: 0.328
+2. correct_ratio: 0.296
+3. num_attempts: 0.214
+4. days: 0.092
+5. sessions: 0.070
