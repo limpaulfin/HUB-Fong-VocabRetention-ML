@@ -66,8 +66,8 @@ venv.bak/
 
 # Project specific
 .history/
-slam-prediction/data/dataverse_files/*.tar
-slam-prediction/data/extracted_data/
+#slam-prediction/data/dataverse_files/*.tar
+#slam-prediction/data/extracted_data/
 slam-prediction/dataverse_files.zip
 
 # Windows specific

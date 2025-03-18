@@ -67,7 +67,7 @@ def generate_tree(dir_path, output_file, base_path=''):
         root_dir = os.path.basename(dir_path)
         f.write(f'{root_dir}/\n')
 
-        write_directory(dir_path, '', f)
+        write_directory(dir_path, '', f, full_details=True)
         f.write('```\n\n')
 
         # Thống kê (không tính các file trong vendor và phpmyadmin)
@@ -89,7 +89,7 @@ def generate_tree(dir_path, output_file, base_path=''):
         f.write('\n> Note: Thư mục vendor được liệt kê nhưng không quét chi tiết bên trong\n')
 
 
-def write_directory(path, prefix='', f=None):
+def write_directory(path, prefix='', f=None, full_details=False):
     """
     Ghi cấu trúc của một thư mục vào file.
 
@@ -100,6 +100,7 @@ def write_directory(path, prefix='', f=None):
     - path: Đường dẫn thư mục cần ghi
     - prefix: Tiền tố để tạo indent (mặc định rỗng)
     - f: File handle để ghi
+    - full_details: Nếu True, hiển thị thêm kích thước và số dòng của file
 
     Quy trình:
     1. Lọc danh sách file/thư mục
@@ -125,11 +126,24 @@ def write_directory(path, prefix='', f=None):
     for entry in filtered_entries:
         full_path = os.path.join(path, entry)
         if os.path.isfile(full_path):
-            f.write(f'{prefix}├───{entry}\n')
+            if full_details:
+                # Thêm thông tin kích thước và số dòng
+                size_kb = os.path.getsize(full_path) / 1024
+                line_count = 0
+                try:
+                    with open(full_path, 'r', encoding='utf-8', errors='ignore') as file:
+                        line_count = sum(1 for _ in file)
+                except:
+                    pass  # Bỏ qua nếu không đọc được file
+
+                file_info = f"{entry} ({size_kb:.1f}KB, {line_count} dòng)"
+                f.write(f'{prefix}├───{file_info}\n')
+            else:
+                f.write(f'{prefix}├───{entry}\n')
         elif os.path.isdir(full_path):
             f.write(f'{prefix}├───{entry}/\n')
             if entry != 'vendor':
-                write_directory(full_path, prefix + '│   ', f)
+                write_directory(full_path, prefix + '│   ', f, full_details)
 
 
 def should_exclude_file(filename):
@@ -145,7 +159,7 @@ def should_exclude_file(filename):
         'index.html',       # Tên file chính xác
         '*.txt',            # Tất cả file .txt
         '*.md',             # Tất cả file markdown
-        # '*.py'              # file python - Đã xóa dòng này
+        # '*.py'            # Đã bỏ loại trừ file Python
     ]
 
     # Kiểm tra tên file chính xác
@@ -175,7 +189,7 @@ def should_exclude_file(filename):
 
 def should_exclude_directory(directory):
     """Cập nhật danh sách loại trừ thư mục"""
-    exclude_list = ['phpmyadmin', 'tests', '.history', 'vendor']  # Thêm vendor
+    exclude_list = ['phpmyadmin', 'tests', '.history', 'vendor', 'venv', '.git']  # Thêm 'venv' và '.git'
     return directory in exclude_list
 
 
@@ -203,6 +217,137 @@ def process_modules(base_dir):
             generate_tree(module_path, output_file, base_path)
 
 
+def save_specific_directory_tree(base_dir, dir_name, output_file_prefix, is_recursive=False):
+    """
+    Tạo file cấu trúc cho một thư mục cụ thể.
+
+    Mục đích:
+    - Tạo file cấu trúc cho một thư mục con cụ thể
+
+    Tham số:
+    - base_dir: Đường dẫn gốc của dự án
+    - dir_name: Tên thư mục cần tạo cấu trúc
+    - output_file_prefix: Tiền tố cho tên file đầu ra
+    - is_recursive: Nếu True, quét sâu hơn trong các thư mục con
+    """
+    target_dir = os.path.join(base_dir, dir_name)
+    if not os.path.exists(target_dir):
+        print(f"Thư mục {target_dir} không tồn tại.")
+        return
+
+    # Tạo tên file đầu ra, thay thế dấu / bằng _ để tránh lỗi đường dẫn
+    safe_dir_name = dir_name.replace("/", "_").replace("\\", "_")
+    output_file = os.path.join(base_dir, f"{output_file_prefix}_{safe_dir_name}.md")
+
+    # Nếu là thư mục đặc biệt cần quét sâu hơn
+    max_depth = 5 if is_recursive else 1
+
+    # Tạo cây thư mục
+    generate_tree_with_depth(target_dir, output_file, dir_name, max_depth)
+    print(f"Đã tạo file {output_file}")
+
+
+def generate_tree_with_depth(dir_path, output_file, base_path='', max_depth=1):
+    """
+    Tạo cây thư mục với độ sâu xác định và ghi vào file markdown.
+
+    Mục đích:
+    - Tạo cấu trúc cây thư mục với độ sâu xác định
+
+    Tham số:
+    - dir_path: Đường dẫn thư mục gốc cần quét
+    - output_file: File markdown đầu ra
+    - base_path: Đường dẫn cơ sở (mặc định rỗng)
+    - max_depth: Độ sâu tối đa cần quét
+    """
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write('# Cấu trúc thư mục {}\n\n'.format(os.path.basename(dir_path)))
+        f.write(f'Được tạo: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n\n')
+        f.write(f'Vị trí file: `{os.path.abspath(dir_path)}`\n\n')
+        f.write('## Cấu trúc thư mục\n\n')
+        f.write('```plaintext\n')
+
+        root_dir = os.path.basename(dir_path)
+        f.write(f'{root_dir}/\n')
+
+        write_directory_with_depth(dir_path, '', f, full_details=True, current_depth=0, max_depth=max_depth)
+        f.write('```\n\n')
+
+        # Thống kê (không tính các file trong vendor và phpmyadmin)
+        total_dirs = 0
+        total_files = 0
+        for root, dirs, files in os.walk(dir_path):
+            # Loại bỏ các thư mục không mong muốn
+            dirs[:] = [d for d in dirs if not should_exclude_directory(d)]
+
+            # Loại bỏ các file không mong muốn
+            files = [f for f in files if not should_exclude_file(f)]
+
+            total_dirs += len(dirs)
+            total_files += len(files)
+
+        f.write('## Thống kê\n\n')
+        f.write(f'- Tổng số thư mục: {total_dirs}\n')
+        f.write(f'- Tổng số file: {total_files}\n')
+        f.write('\n> Note: Thư mục vendor được liệt kê nhưng không quét chi tiết bên trong\n')
+
+
+def write_directory_with_depth(path, prefix='', f=None, full_details=False, current_depth=0, max_depth=1):
+    """
+    Ghi cấu trúc của một thư mục vào file với giới hạn độ sâu.
+
+    Mục đích:
+    - Ghi cấu trúc của một thư mục vào file với giới hạn độ sâu
+
+    Tham số:
+    - path: Đường dẫn thư mục cần ghi
+    - prefix: Tiền tố để tạo indent (mặc định rỗng)
+    - f: File handle để ghi
+    - full_details: Nếu True, hiển thị thêm kích thước và số dòng của file
+    - current_depth: Độ sâu hiện tại
+    - max_depth: Độ sâu tối đa cần quét
+    """
+    if current_depth > max_depth:
+        f.write(f'{prefix}│   ...\n')
+        return
+
+    entries = os.listdir(path)
+    filtered_entries = []
+
+    for entry in entries:
+        full_path = os.path.join(path, entry)
+        if os.path.isfile(full_path):
+            if should_exclude_file(entry):
+                continue
+        elif os.path.isdir(full_path):
+            if should_exclude_directory(entry):
+                continue
+        filtered_entries.append(entry)
+
+    filtered_entries.sort()
+
+    for entry in filtered_entries:
+        full_path = os.path.join(path, entry)
+        if os.path.isfile(full_path):
+            if full_details:
+                # Thêm thông tin kích thước và số dòng
+                size_kb = os.path.getsize(full_path) / 1024
+                line_count = 0
+                try:
+                    with open(full_path, 'r', encoding='utf-8', errors='ignore') as file:
+                        line_count = sum(1 for _ in file)
+                except:
+                    pass  # Bỏ qua nếu không đọc được file
+
+                file_info = f"{entry} ({size_kb:.1f}KB, {line_count} dòng)"
+                f.write(f'{prefix}├───{file_info}\n')
+            else:
+                f.write(f'{prefix}├───{entry}\n')
+        elif os.path.isdir(full_path):
+            f.write(f'{prefix}├───{entry}/\n')
+            if entry != 'vendor':
+                write_directory_with_depth(full_path, prefix + '│   ', f, full_details, current_depth + 1, max_depth)
+
 
 if __name__ == '__main__':
     """
@@ -224,16 +369,20 @@ if __name__ == '__main__':
         md_filename = os.path.splitext(current_script)[0] + ".md"
         main_output = os.path.join(current_dir, md_filename)
 
-        base_path = 'wp-content/plugins/fong_de_lms'
+        base_path = 'tieu-luan-ca-nhan'
 
         # Tạo file chính
         generate_tree(current_dir, main_output, base_path)
 
+        # Tạo file cho các thư mục quan trọng
+        save_specific_directory_tree(current_dir, "docs", "files", is_recursive=False)
+        save_specific_directory_tree(current_dir, "slam-prediction", "files", is_recursive=False)
+
+        # Tạo file cho tiểu luận với quét sâu hơn
+        save_specific_directory_tree(current_dir, "docs/tieu-luan", "files", is_recursive=True)
+
         # Tạo file cho từng module
         process_modules(current_dir)
-
-        # Thực thi các file Python trong theme
-        #executed_files = find_and_execute_theme_scripts()
 
     except Exception as e:
         print(f"Error: {str(e)}")

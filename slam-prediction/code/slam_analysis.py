@@ -1,9 +1,9 @@
 """
 File: slam_analysis.py
 Danh sách file liên quan/phụ thuộc:
-- ../data/extracted_data/data_en_es/en_es.slam.20190204.train
-- ../data/extracted_data/data_en_es/en_es.slam.20190204.dev
-- ../data/extracted_data/data_en_es/en_es.slam.20190204.dev.key
+- ../data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.train
+- ../data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.dev
+- ../data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.dev.key
 
 Chức năng chính và mục đích của file:
 - Phân tích dữ liệu SLAM của Duolingo
@@ -39,13 +39,16 @@ import joblib
 import warnings
 warnings.filterwarnings('ignore')
 
+# Đường dẫn gốc của dự án
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # Đường dẫn đến các file dữ liệu
-TRAIN_PATH = "../data/extracted_data/data_en_es/en_es.slam.20190204.train"
-DEV_PATH = "../data/extracted_data/data_en_es/en_es.slam.20190204.dev"
-DEV_KEY_PATH = "../data/extracted_data/data_en_es/en_es.slam.20190204.dev.key"
+TRAIN_PATH = os.path.join(BASE_DIR, "data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.train")
+DEV_PATH = os.path.join(BASE_DIR, "data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.dev")
+DEV_KEY_PATH = os.path.join(BASE_DIR, "data/dataverse_files/data_en_es.tar/data_en_es/en_es.slam.20190204.dev.key")
 
 # Thư mục để lưu kết quả
-RESULTS_DIR = "../results"
+RESULTS_DIR = os.path.join(BASE_DIR, "results")
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 # Hàm đọc dữ liệu SLAM

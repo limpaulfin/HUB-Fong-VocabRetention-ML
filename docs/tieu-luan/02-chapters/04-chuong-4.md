@@ -123,11 +123,11 @@ Kết quả đánh giá sơ bộ trên tập kiểm tra:
 
 | Chỉ số    | Logistic Regression | Random Forest |
 | --------- | ------------------- | ------------- |
-| Accuracy  | 76.2%               | 82.8%         |
-| Precision | 78.5%               | 84.7%         |
-| Recall    | 73.9%               | 80.2%         |
-| F1-score  | 76.1%               | 82.4%         |
-| AUC-ROC   | 0.83                | 0.89          |
+| Accuracy  | 85.80%              | 85.82%        |
+| Precision | 50.00%              | 87.50%        |
+| Recall    | 0.21%               | 0.19%         |
+| F1-score  | 0.42%               | 0.38%         |
+| AUC-ROC   | 0.69                | 0.72          |
 
 ### 4.3.3. Phân tích đường cong học tập (Learning Curve)
 
@@ -174,15 +174,27 @@ Kết quả tối ưu hóa cho thấy các tham số tối ưu như sau:
 
 Sau khi tối ưu hóa mô hình Random Forest, chúng tôi phân tích tầm quan trọng của các đặc trưng:
 
-1. Tỷ lệ đúng (correct_ratio): 32.5%
-2. Thời gian kể từ lần thử cuối (time_since_last_attempt): 24.3%
-3. Tần suất lặp lại (repetition_frequency): 18.7%
-4. Độ khó của token (token_difficulty): 12.1%
-5. Khoảng cách ôn tập trung bình (average_review_interval): 7.8%
-6. Số lần thử (num_attempts): 3.2%
-7. Thời gian sử dụng ứng dụng (days): 1.4%
+**Logistic Regression**:
 
-Kết quả này cho thấy tỷ lệ đúng, thời gian kể từ lần thử cuối và tần suất lặp lại là ba đặc trưng quan trọng nhất trong việc dự đoán khả năng ghi nhớ từ vựng.
+1. format_reverse_tap: 0.4478
+2. num_attempts: 0.3922
+3. format_listen: 0.2850
+4. correct_ratio: 0.2009
+5. pos_PRON: 0.1436
+6. format_reverse_translate: 0.1161
+7. pos_ADJ: 0.0945
+
+**Random Forest**:
+
+1. num_attempts: 0.2059
+2. format_reverse_tap: 0.2054
+3. correct_ratio: 0.1626
+4. format_listen: 0.1100
+5. days: 0.0960
+6. time_since_last_attempt: 0.0519
+7. format_reverse_translate: 0.0510
+
+Kết quả này cho thấy loại bài tập (format_reverse_tap), số lần thử (num_attempts) và tỷ lệ đúng (correct_ratio) là ba đặc trưng quan trọng nhất trong việc dự đoán khả năng ghi nhớ từ vựng.
 
 ### 4.4.3. Hiệu suất mô hình sau tối ưu hóa
 

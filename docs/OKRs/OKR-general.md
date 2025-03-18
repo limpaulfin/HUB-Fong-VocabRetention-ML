@@ -1,115 +1,65 @@
-# OKR-general - Tiểu luận cá nhân về Học máy trong dự đoán khả năng ghi nhớ từ vựng
+# OKR - Objectives and Key Results
 
-## Nhiệm vụ hiện tại
+## Mục tiêu 1: Phân tích dữ liệu SLAM của Duolingo để dự đoán khả năng ghi nhớ từ vựng
 
-1. Cập nhật các liên kết trong file toc.md và các file khác để phản ánh cấu trúc thư mục mới (đang thực hiện)
-2. Xây dựng mô hình học máy để dự đoán khả năng ghi nhớ từ vựng tiếng Anh
-3. Phân tích dữ liệu từ bộ dữ liệu SLAM của Duolingo
-4. Viết tiểu luận theo cấu trúc đã định
-5. Cập nhật số liệu thực tế vào file abstract.md (docs/tieu-luan/01-front-matter/03-abstract.md) sau khi hoàn thành phân tích dữ liệu
-6. Hoàn thiện nội dung các chương trong tiểu luận
-7. Cập nhật số liệu thực tế trong README.md và abstract.md sau khi hoàn thành phân tích dữ liệu:
-    - Số lượng học viên chính xác trong bộ dữ liệu SLAM
-    - Độ chính xác thực tế của mô hình Random Forest (hiện tại ~83%)
-    - Độ chính xác thực tế của mô hình Logistic Regression (hiện tại ~76%)
-    - Các yếu tố ảnh hưởng đến độ chính xác dựa trên phân tích feature importance
+### Các kết quả chính (Key Results):
 
-## Nhiệm vụ đã hoàn thành
+-   ✅ **(Hoàn thành)** Hiểu rõ cấu trúc dữ liệu SLAM và các đặc trưng trong tập dữ liệu
+-   ✅ **(Hoàn thành)** Phân tích thăm dò và tiền xử lý dữ liệu SLAM để chuẩn bị cho mô hình hóa
+-   ✅ **(Hoàn thành)** Xây dựng mô hình học máy dự đoán khả năng ghi nhớ từ vựng với độ chính xác > 80%
+-   ✅ **(Hoàn thành)** Phân tích các yếu tố ảnh hưởng đến khả năng ghi nhớ dựa trên mô hình học máy
+-   ✅ **(Hoàn thành)** Đánh giá hiệu suất mô hình và đề xuất các cải tiến
 
-1. Backup cursor rule (✅)
-2. Cursor rules mới đã được tạo xong (✅)
-3. Tách yêu cầu và nội dung vào các file riêng (✅)
-4. Phân chia nội dung thành các chương riêng biệt (✅)
-5. Tạo cấu trúc thư mục đầy đủ cho tiểu luận (✅)
-    - Tạo các thư mục con với tiền tố số: 01-front-matter, 02-chapters, 03-back-matter
-    - Tạo các file bắt buộc với tiền tố số trong mỗi thư mục
-6. Xóa thư mục dataverse_files gốc sau khi đã di chuyển vào slam-prediction/data/dataverse_files (✅)
-7. Cập nhật file \_files.py để hiển thị các file .py trong cấu trúc thư mục (✅)
-8. Tạo file index.md trong thư mục docs và tieu-luan (✅)
-9. Cập nhật file toc.md với cấu trúc mới (✅)
-10. Xóa các thư mục và file cũ không cần thiết (✅)
-11. Tạo file tài liệu tham khảo có URL (01-references-url.md) (✅)
-12. Kiểm tra và cập nhật URL trong file tài liệu tham khảo (✅)
-13. Cập nhật lời cảm ơn trong file 02-acknowledgements.md (✅)
-14. Cập nhật và mở rộng nội dung chương 3 về quy trình thu thập và xử lý dữ liệu (✅)
-15. Cập nhật và mở rộng nội dung chương 4 về xây dựng mô hình học máy (✅)
+## Mục tiêu 2: Tạo báo cáo phân tích chi tiết về kết quả dự đoán và các yếu tố ảnh hưởng
 
-## Ghi chú kỹ thuật
+### Các kết quả chính (Key Results):
 
-### Dữ liệu
+-   ✅ **(Hoàn thành)** Tổng hợp kết quả phân tích dữ liệu vào báo cáo sơ bộ
+-   ✅ **(Hoàn thành)** Trực quan hóa tác động của các đặc trưng quan trọng đến khả năng ghi nhớ từ vựng
+-   ✅ **(Hoàn thành)** Phân tích so sánh hiệu suất các mô hình học máy đã thử nghiệm
+-   ✅ **(Hoàn thành)** Đề xuất các nguyên tắc thiết kế hệ thống học tập dựa trên kết quả phân tích
 
--   Bộ dữ liệu SLAM (Second Language Acquisition Modeling) từ Duolingo
--   Tập trung vào dữ liệu tiếng Anh (en_es hoặc es_en, fr_en)
--   Các đặc trưng chính: num_attempts, num_correct, time_since_last_attempt
--   Đặc trưng suy ra: thời gian ôn tập, tần suất lặp lại
+## Mục tiêu 3: Hoàn thiện tiểu luận về dự đoán khả năng ghi nhớ từ vựng
 
-### Mô hình
+### Các kết quả chính (Key Results):
 
--   Ngôn ngữ lập trình: Python
--   Thuật toán chính: Logistic Regression và Random Forest
--   Đánh giá: Accuracy, Precision, Recall, F1-score, AUC-ROC
--   Yếu tố ảnh hưởng: tỷ lệ đúng, thời gian kể từ lần thử cuối, tần suất lặp lại
+-   ✅ **(Hoàn thành)** Viết chương mở đầu và tổng quan về vấn đề nghiên cứu
+-   ✅ **(Hoàn thành)** Tổng hợp tài liệu tham khảo về các nghiên cứu liên quan
+-   ✅ **(Hoàn thành)** Mô tả chi tiết quy trình thực hiện và phương pháp nghiên cứu
+-   ✅ **(Hoàn thành)** Trình bày kết quả nghiên cứu và thảo luận
+-   ✅ **(Hoàn thành)** Viết kết luận và đề xuất hướng nghiên cứu tiếp theo
+-   ✅ **(Hoàn thành)** Hoàn thiện tài liệu tham khảo và phụ lục
 
-### File cần cập nhật số liệu thực tế
+## Mục tiêu 4: Thực hiện các nhiệm vụ theo góp ý từ anh Thịnh
 
-1. **README.md**: Cập nhật phần Kết quả
+### Các kết quả chính (Key Results):
 
-    ```markdown
-    ## Kết quả
+-   ✅ **(Hoàn thành)** Cấu trúc lại góp ý của anh Thịnh thành tài liệu có tổ chức
+-   ✅ **(Hoàn thành)** Tạo OKR mới để theo dõi các nhiệm vụ theo góp ý của anh Thịnh
+-   ✅ **(Hoàn thành)** Bổ sung thông tin so sánh với tỷ lệ ghi nhớ thực tế của Duolingo
+-   ✅ **(Hoàn thành)** Phân tích sự phát triển của Duolingo từ 2017 đến nay
+-   ✅ **(Hoàn thành)** Cập nhật tài liệu tham khảo với các nghiên cứu và bài viết mới về Duolingo
+-   [ ] Nêu yêu cầu và đề xuất áp dụng mô hình vào hệ thống LMS riêng
+-   [ ] Xây dựng hướng phát triển dịch vụ tư vấn dựa trên kết quả nghiên cứu
 
-    Kết quả nghiên cứu cho thấy mô hình Random Forest đạt hiệu suất cao hơn với độ chính xác khoảng 83%, trong khi Logistic Regression đạt khoảng 76%. Các yếu tố ảnh hưởng đến độ chính xác bao gồm tần suất lặp lại và thời gian ôn tập.
-    ```
+## Mục tiêu 5: Chuẩn bị bảo vệ tiểu luận
 
-2. **docs/tieu-luan/01-front-matter/03-abstract.md**: Cập nhật số liệu theo ghi chú
-    ```markdown
-    <!--
-    LƯU Ý: Cần cập nhật các số liệu thực tế sau khi hoàn thành phân tích dữ liệu:
-    1. Số lượng học viên chính xác trong bộ dữ liệu SLAM
-    2. Độ chính xác thực tế của mô hình Random Forest (hiện tại ~83%)
-    3. Độ chính xác thực tế của mô hình Logistic Regression (hiện tại ~76%)
-    4. Các yếu tố ảnh hưởng đến độ chính xác dựa trên phân tích feature importance
-    -->
-    ```
+### Các kết quả chính (Key Results):
 
-## Cấu trúc tiểu luận
+-   [ ] Tạo bài thuyết trình PowerPoint tóm tắt nghiên cứu (10-15 slides)
+-   [ ] Chuẩn bị demo của mô hình học máy để minh họa quá trình dự đoán
+-   [ ] Luyện tập trình bày (thời gian: 15-20 phút)
+-   [ ] Chuẩn bị câu trả lời cho các câu hỏi dự kiến từ giảng viên
 
-### Các thành phần bắt buộc trong tiểu luận trình độ thạc sĩ
+## Ghi chú
 
-1. **Trang bìa** (Title page): Bao gồm tên đề tài, tên tác giả, mã số học viên, tên cơ sở đào tạo, năm thực hiện
-2. **Lời cảm ơn** (Acknowledgements): Cảm ơn người hướng dẫn, đồng nghiệp, gia đình
-3. **Tóm tắt** (Abstract): Tóm tắt ngắn gọn nội dung nghiên cứu (khoảng 250-300 từ)
-4. **Mục lục** (Table of contents): Liệt kê các chương, mục và trang tương ứng
-5. **Danh mục hình ảnh, bảng biểu** (List of figures, tables): Liệt kê các hình ảnh, bảng biểu trong tiểu luận
-6. **Danh mục từ viết tắt** (List of abbreviations): Giải thích các từ viết tắt sử dụng trong tiểu luận
-7. **Các chương nội dung chính** (Main chapters): 6 chương đã được tạo
-8. **Tài liệu tham khảo** (References): Danh sách các tài liệu tham khảo theo định dạng chuẩn (APA, IEEE, v.v.)
-9. **Phụ lục** (Appendices): Các thông tin bổ sung, mã nguồn, dữ liệu chi tiết (nếu có)
+-   Tất cả mã nguồn và dữ liệu phải được lưu trữ trong thư mục `slam-prediction/`
+-   Tiểu luận phải tuân thủ định dạng quy định và có độ dài 30-40 trang
+-   Deadline cuối cùng: 30/04/2024
 
-### Cấu trúc thư mục mới
+## Cập nhật tiến độ
 
-```
-docs/
-└── tieu-luan/                      # Thư mục chứa tiểu luận
-    ├── 01-front-matter/            # Phần mở đầu
-    │   ├── 01-title-page.md        # Trang bìa
-    │   ├── 02-acknowledgements.md  # Lời cảm ơn
-    │   ├── 03-abstract.md          # Tóm tắt
-    │   ├── 04-toc.md               # Mục lục
-    │   ├── 05-list-of-figures.md   # Danh mục hình ảnh
-    │   └── 06-abbreviations.md     # Danh mục từ viết tắt
-    │
-    ├── 02-chapters/                # Các chương nội dung
-    │   ├── 01-chuong-1.md          # Chương 1
-    │   ├── 02-chuong-2.md          # Chương 2
-    │   ├── 03-chuong-3.md          # Chương 3
-    │   ├── 04-chuong-4.md          # Chương 4
-    │   ├── 05-chuong-5.md          # Chương 5
-    │   └── 06-chuong-6.md          # Chương 6
-    │
-    ├── 03-back-matter/             # Phần kết thúc
-    │   ├── 01-references.md        # Tài liệu tham khảo
-    │   ├── 01-references-url.md    # Tài liệu tham khảo có URL
-    │   └── 02-appendices.md        # Phụ lục
-    │
-    └── index.md                    # Trang chính (tổng hợp)
-```
+-   15/03/2024: Hoàn thành Mục tiêu 1 và 2
+-   16/03/2024: Hoàn thành Mục tiêu 3 (Draft 1)
+-   17/03/2024: Nhận được góp ý từ anh Thịnh, tạo tài liệu cấu trúc và OKR mới
+-   18/03/2024: Hoàn thành nghiên cứu và bổ sung thông tin về tỷ lệ ghi nhớ, sự phát triển của Duolingo, và cập nhật tài liệu tham khảo
