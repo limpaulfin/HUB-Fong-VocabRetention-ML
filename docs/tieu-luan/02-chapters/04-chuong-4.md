@@ -2,11 +2,11 @@
 
 ## 4.1. Phân tích và lựa chọn đặc trưng
 
-Dựa trên bộ dữ liệu SLAM đã được xử lý ở Chương 3, chúng tôi tiến hành phân tích và lựa chọn các đặc trưng phù hợp cho việc xây dựng mô hình dự đoán khả năng ghi nhớ từ vựng.
+Dựa trên bộ dữ liệu SLAM đã được xử lý ở Chương 3, tôi tiến hành phân tích và lựa chọn các đặc trưng phù hợp cho việc xây dựng mô hình dự đoán khả năng ghi nhớ từ vựng.
 
 ### 4.1.1. Phân tích tương quan giữa các đặc trưng
 
-Trước khi lựa chọn đặc trưng, chúng tôi tiến hành phân tích tương quan giữa các đặc trưng để xác định mức độ ảnh hưởng của chúng đến biến mục tiêu (label) và phát hiện các đặc trưng có tương quan cao với nhau. Kết quả phân tích cho thấy:
+Trước khi lựa chọn đặc trưng, tôi tiến hành phân tích tương quan giữa các đặc trưng để xác định mức độ ảnh hưởng của chúng đến biến mục tiêu (label) và phát hiện các đặc trưng có tương quan cao với nhau. Kết quả phân tích cho thấy:
 
 -   **Tỷ lệ đúng (correct_ratio)** có tương quan mạnh nhất với biến mục tiêu, với hệ số tương quan Pearson là -0.72 (tương quan âm vì label = 1 nghĩa là trả lời sai)
 -   **Thời gian kể từ lần thử cuối (time_since_last_attempt)** có tương quan vừa phải với biến mục tiêu (hệ số 0.41)
@@ -14,7 +14,7 @@ Trước khi lựa chọn đặc trưng, chúng tôi tiến hành phân tích t�
 
 ### 4.1.2. Lựa chọn đặc trưng cuối cùng
 
-Dựa trên kết quả phân tích tương quan và tầm quan trọng của đặc trưng, chúng tôi lựa chọn các đặc trưng sau cho mô hình học máy:
+Dựa trên kết quả phân tích tương quan và tầm quan trọng của đặc trưng, tôi lựa chọn các đặc trưng sau cho mô hình học máy:
 
 1. **Đặc trưng trực tiếp từ dữ liệu SLAM**:
 
@@ -30,7 +30,7 @@ Dựa trên kết quả phân tích tương quan và tầm quan trọng của đ
 
 ### 4.1.3. Phân tích tầm quan trọng của đặc trưng
 
-Để đánh giá tầm quan trọng của các đặc trưng đã chọn, chúng tôi sử dụng phương pháp SelectKBest với chỉ số chi-square. Kết quả cho thấy thứ tự tầm quan trọng của các đặc trưng như sau:
+Để đánh giá tầm quan trọng của các đặc trưng đã chọn, tôi sử dụng phương pháp SelectKBest với chỉ số chi-square. Kết quả cho thấy thứ tự tầm quan trọng của các đặc trưng như sau:
 
 1. Tỷ lệ đúng (correct_ratio): 100%
 2. Thời gian kể từ lần thử cuối (time_since_last_attempt): 78%
@@ -42,7 +42,7 @@ Dựa trên kết quả phân tích tương quan và tầm quan trọng của đ
 
 ## 4.2. Thiết kế và xây dựng mô hình học máy
 
-Dựa trên đặc điểm của bài toán dự đoán khả năng ghi nhớ từ vựng (bài toán phân loại nhị phân), chúng tôi lựa chọn hai thuật toán học máy phổ biến và hiệu quả: Logistic Regression và Random Forest.
+Dựa trên đặc điểm của bài toán dự đoán khả năng ghi nhớ từ vựng (bài toán phân loại nhị phân), tôi lựa chọn hai thuật toán học máy phổ biến và hiệu quả: Logistic Regression và Random Forest.
 
 ### 4.2.1. Mô hình Logistic Regression
 
@@ -111,7 +111,7 @@ Quy trình huấn luyện mô hình được thực hiện theo các bước sau
 
 ### 4.3.2. Đánh giá hiệu suất mô hình
 
-Để đánh giá hiệu suất của các mô hình, chúng tôi sử dụng các chỉ số sau:
+Để đánh giá hiệu suất của các mô hình, tôi sử dụng các chỉ số sau:
 
 -   **Accuracy (Độ chính xác)**: Tỷ lệ dự đoán đúng trên tổng số mẫu
 -   **Precision (Độ chính xác dương tính)**: Tỷ lệ dự đoán đúng trong số các mẫu được dự đoán là dương tính
@@ -131,7 +131,7 @@ Kết quả đánh giá sơ bộ trên tập kiểm tra:
 
 ### 4.3.3. Phân tích đường cong học tập (Learning Curve)
 
-Để đánh giá khả năng khái quát hóa của mô hình và xác định xem mô hình có bị overfitting hay underfitting không, chúng tôi phân tích đường cong học tập của cả hai mô hình:
+Để đánh giá khả năng khái quát hóa của mô hình và xác định xem mô hình có bị overfitting hay underfitting không, tôi phân tích đường cong học tập của cả hai mô hình:
 
 -   **Logistic Regression**: Đường cong học tập cho thấy mô hình hội tụ nhanh và có khoảng cách nhỏ giữa hiệu suất trên tập huấn luyện và tập kiểm tra, cho thấy mô hình không bị overfitting.
 -   **Random Forest**: Đường cong học tập cho thấy mô hình có hiệu suất cao hơn trên tập huấn luyện so với tập kiểm tra, cho thấy có dấu hiệu nhẹ của overfitting. Tuy nhiên, khoảng cách này không quá lớn, cho thấy mô hình vẫn có khả năng khái quát hóa tốt.
@@ -140,7 +140,7 @@ Kết quả đánh giá sơ bộ trên tập kiểm tra:
 
 ### 4.4.1. Tối ưu hóa siêu tham số
 
-Để cải thiện hiệu suất của mô hình, chúng tôi tiến hành tối ưu hóa siêu tham số bằng phương pháp Grid Search kết hợp với Cross-Validation:
+Để cải thiện hiệu suất của mô hình, tôi tiến hành tối ưu hóa siêu tham số bằng phương pháp Grid Search kết hợp với Cross-Validation:
 
 **Logistic Regression**:
 
@@ -172,7 +172,7 @@ Kết quả tối ưu hóa cho thấy các tham số tối ưu như sau:
 
 ### 4.4.2. Phân tích tầm quan trọng của đặc trưng sau tối ưu hóa
 
-Sau khi tối ưu hóa mô hình Random Forest, chúng tôi phân tích tầm quan trọng của các đặc trưng:
+Sau khi tối ưu hóa mô hình Random Forest, tôi phân tích tầm quan trọng của các đặc trưng:
 
 **Logistic Regression**:
 

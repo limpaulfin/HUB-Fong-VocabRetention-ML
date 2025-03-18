@@ -59,3 +59,5 @@
 29. Huynh, D., Zuo, L., & Iida, H. (2016). Analyzing Gamification of "Duolingo" with Focus on its Course Structure. _Games and Learning Alliance: 5th International Conference, GALA 2016_ (pp. 268-277).
 
 30. Mettler, E., Massey, C. M., & Kellman, P. J. (2016). A comparison of adaptive and fixed schedules of practice. _Journal of Experimental Psychology: General_, 145(7), 897-917.
+
+31. Lâm, T. P. (2024). HUB-Fong-VocabRetention-ML: Mã nguồn nghiên cứu ứng dụng học máy trong dự đoán khả năng ghi nhớ từ vựng. GitHub. https://github.com/limpaulfin/HUB-Fong-VocabRetention-ML/

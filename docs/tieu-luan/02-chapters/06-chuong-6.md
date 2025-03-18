@@ -2,7 +2,7 @@
 
 ## 6.1. Ứng dụng thực tế của mô hình dự đoán khả năng ghi nhớ từ vựng
 
-Dựa trên kết quả của mô hình Random Forest và Logistic Regression với độ chính xác khoảng 85.8%, chúng tôi đề xuất các ứng dụng thực tế sau đây:
+Dựa trên kết quả của mô hình Random Forest và Logistic Regression với độ chính xác khoảng 85.8%, tôi đề xuất các ứng dụng thực tế sau đây:
 
 ### 6.1.1. Cá nhân hóa lịch trình ôn tập
 
@@ -16,7 +16,7 @@ Mô hình có thể được tích hợp vào các ứng dụng học ngôn ng�
 
 ### 6.1.2. Tối ưu hóa loại bài tập
 
-Dựa trên kết quả phân tích tầm quan trọng của đặc trưng, chúng tôi thấy rằng loại bài tập (đặc biệt là format_reverse_tap) có ảnh hưởng lớn đến khả năng ghi nhớ từ vựng. Vì vậy, hệ thống có thể:
+Dựa trên kết quả phân tích tầm quan trọng của đặc trưng, tôi thấy rằng loại bài tập (đặc biệt là format_reverse_tap) có ảnh hưởng lớn đến khả năng ghi nhớ từ vựng. Vì vậy, hệ thống có thể:
 
 -   **Điều chỉnh tỷ lệ các loại bài tập**: Tăng tỷ lệ bài tập dạng reverse_tap cho các từ vựng khó nhớ, giúp tăng cường khả năng ghi nhớ.
 
@@ -36,7 +36,7 @@ Mô hình có thể được sử dụng để phân tích tiến độ học t�
 
 ## 6.2. Đề xuất cải tiến trong tương lai
 
-Dựa trên kết quả nghiên cứu và các hạn chế của mô hình hiện tại, chúng tôi đề xuất các hướng cải tiến sau đây:
+Dựa trên kết quả nghiên cứu và các hạn chế của mô hình hiện tại, tôi đề xuất các hướng cải tiến sau đây:
 
 ### 6.2.1. Cải tiến về dữ liệu
 
@@ -67,6 +67,8 @@ Dựa trên kết quả nghiên cứu và các hạn chế của mô hình hiệ
 Nghiên cứu này đã xây dựng và đánh giá các mô hình học máy để dự đoán khả năng ghi nhớ từ vựng tiếng Anh dựa trên dữ liệu hành vi học tập từ Duolingo. Kết quả cho thấy cả hai mô hình Logistic Regression và Random Forest đều đạt độ chính xác tương đương nhau, khoảng 85.8%, với các đặc trưng quan trọng bao gồm loại bài tập, số lần thử và tỷ lệ trả lời đúng.
 
 Mặc dù có một số hạn chế, như độ nhạy thấp và dữ liệu chỉ bao gồm 30 ngày đầu tiên sử dụng ứng dụng, nhưng kết quả nghiên cứu vẫn có giá trị thực tiễn đáng kể. Các mô hình dự đoán có thể được tích hợp vào các ứng dụng học ngôn ngữ để cá nhân hóa lịch trình ôn tập, tối ưu hóa loại bài tập và phân tích tiến độ học tập của học viên.
+
+Toàn bộ mã nguồn của nghiên cứu này được công khai tại [GitHub](https://github.com/limpaulfin/HUB-Fong-VocabRetention-ML/), cho phép các nhà nghiên cứu, giáo viên và nhà phát triển giáo dục ứng dụng kiểm tra, sử dụng lại, và mở rộng các mô hình và phương pháp được trình bày trong tiểu luận này.
 
 Trong tương lai, nghiên cứu có thể được mở rộng theo nhiều hướng, bao gồm thu thập dữ liệu dài hạn, áp dụng các kỹ thuật học sâu và bổ sung các đặc trưng mới để cải thiện hiệu suất dự đoán và tăng cường hiểu biết về quá trình học tập ngôn ngữ. Những cải tiến này sẽ góp phần phát triển các công cụ học tập ngôn ngữ hiệu quả hơn, giúp người học cải thiện khả năng ghi nhớ từ vựng và đạt được các mục tiêu học tập nhanh chóng hơn.
 
@@ -162,7 +164,7 @@ Trong giai đoạn 2017-2024, Duolingo đã liên tục cải tiến các tính 
 
 ### 6.4.4. Tác động đến khả năng ghi nhớ từ vựng
 
-Dựa trên các cải tiến từ 2017-2024, chúng ta có thể xác định những yếu tố có tác động tích cực đến khả năng ghi nhớ từ vựng:
+Dựa trên các cải tiến từ 2017-2024, tôi có thể xác định những yếu tố có tác động tích cực đến khả năng ghi nhớ từ vựng:
 
 1. **Lộ trình học tập theo nguyên lý spaced repetition**: Việc chuyển sang lộ trình tuyến tính với ôn tập ngắt quãng tích hợp có thể cải thiện đáng kể khả năng ghi nhớ dài hạn.
 
@@ -174,11 +176,11 @@ Dựa trên các cải tiến từ 2017-2024, chúng ta có thể xác định n
 
 5. **Chuẩn hóa quá trình học tập**: Các đơn vị chủ đề rõ ràng và tài liệu hướng dẫn giúp người học nắm vững ngữ cảnh và cấu trúc ngôn ngữ, từ đó cải thiện khả năng ghi nhớ.
 
-Những cải tiến này phù hợp với kết quả phân tích về tầm quan trọng của đặc trưng từ mô hình của chúng ta. Ví dụ, việc nhấn mạnh vào các loại bài tập đa dạng (như format_reverse_tap) và tần suất ôn tập (time_since_last_attempt) trong thiết kế lộ trình học tập mới của Duolingo cho thấy công ty đang áp dụng những nguyên tắc tương tự như những gì mô hình của chúng ta đã xác định.
+Những cải tiến này phù hợp với kết quả phân tích về tầm quan trọng của đặc trưng từ mô hình của nghiên cứu này. Ví dụ, việc nhấn mạnh vào các loại bài tập đa dạng (như format_reverse_tap) và tần suất ôn tập (time_since_last_attempt) trong thiết kế lộ trình học tập mới của Duolingo cho thấy công ty đang áp dụng những nguyên tắc tương tự như những gì mô hình của nghiên cứu này đã xác định.
 
 ### 6.4.5. Đề xuất cho nghiên cứu trong tương lai
 
-Dựa trên phân tích sự phát triển của Duolingo từ 2017-2024, chúng tôi đề xuất một số hướng nghiên cứu trong tương lai:
+Dựa trên phân tích sự phát triển của Duolingo từ 2017-2024, tôi đề xuất một số hướng nghiên cứu trong tương lai:
 
 1. **So sánh hiệu quả học tập giữa mô hình "cây" và "lộ trình tuyến tính"**: Nghiên cứu đánh giá tác động của việc chuyển đổi cấu trúc đến khả năng ghi nhớ từ vựng.
 
@@ -188,4 +190,4 @@ Dựa trên phân tích sự phát triển của Duolingo từ 2017-2024, chúng
 
 4. **Nghiên cứu vai trò của yếu tố xã hội trong việc ghi nhớ từ vựng**: Phân tích mức độ ảnh hưởng của tương tác xã hội và cạnh tranh đến hiệu quả học tập.
 
-Những nghiên cứu này sẽ giúp chúng ta cập nhật mô hình dự đoán và áp dụng những bài học từ sự phát triển của Duolingo vào các hệ thống học tập ngôn ngữ khác.
+Những nghiên cứu này sẽ giúp cập nhật mô hình dự đoán và áp dụng những bài học từ sự phát triển của Duolingo vào các hệ thống học tập ngôn ngữ khác.

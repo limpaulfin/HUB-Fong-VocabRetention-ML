@@ -8,6 +8,6 @@ Tôi cũng xin bày tỏ lòng biết ơn đến các bạn đồng học trong 
 
 Tôi xin gửi lời cảm ơn đến ông Tô Phúc Hậu, Giám đốc Công ty TNHH IRONTAN VIỆT NAM (IRONTAN VIET NAM COMPANY LIMITED), đã tạo điều kiện và hỗ trợ tôi trong quá trình học tập và nghiên cứu.
 
-Tôi cũng xin bày tỏ lòng biết ơn đến ông Lê Phúc Thịnh, Chủ tịch Hội đồng quản trị và Giám đốc Công ty Cổ phần Đầu tư Phát triển Thương mại Dịch vụ THE MOB GROUP (Deutschfuns LMS), đã đóng góp những ý kiến quý báu và tạo môi trường thuận lợi cho việc ứng dụng các kết quả nghiên cứu.
+Tôi cũng xin bày tỏ lòng biết ơn đến ông Lê Phúc Thịnh, Chủ tịch Hội đồng quản trị và Giám đốc Công ty Cổ phần Đầu tư Phát triển Thương mại Dịch vụ THE MOB GROUP (Deutschfuns LMS), đã đóng góp những ý kiến quý báu và tạo môi trường thuận lợi cho việc ứng dụng các kết quả nghiên cứu. Deutschfuns là nền tảng học tiếng Đức trực tuyến hiện đại tại Việt Nam (https://deutschfuns.com), ứng dụng phương pháp micro learning kết hợp với công nghệ AI, cung cấp đào tạo toàn diện 4 kỹ năng ngôn ngữ từ trình độ A1 đến B1, giúp người học tiếp thu kiến thức nhanh chóng và hiệu quả.
 
 Cuối cùng, tôi xin gửi lời cảm ơn sâu sắc đến gia đình và bạn bè đã luôn động viên, khích lệ và tạo điều kiện thuận lợi để tôi có thể hoàn thành tốt chương trình học và tiểu luận này.

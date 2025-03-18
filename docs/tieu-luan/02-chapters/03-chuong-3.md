@@ -2,7 +2,7 @@
 
 ## 3.1. Thu thập dữ liệu từ bộ dữ liệu SLAM
 
-Bộ dữ liệu SLAM (Second Language Acquisition Modeling) được lưu trữ dưới dạng các tệp nén gzip trên Harvard Dataverse và có thể tải xuống miễn phí dưới giấy phép Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0). Dữ liệu bao gồm thông tin chi tiết về hành vi học tập của học viên trong 30 ngày đầu tiên sử dụng ứng dụng Duolingo.
+Bộ dữ liệu SLAM (Second Language Acquisition Modeling) được lưu trữ dưới dạng các tệp nén gzip trên Harvard Dataverse và có thể tải xuống miễn phí dưới giấy phép Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0). Dữ liệu bao gồm thông tin chi tiết về hành vi học tập của học viên trong 30 ngày đầu tiên sử dụng ứng dụng Duolingo. Toàn bộ mã nguồn, quy trình xử lý dữ liệu và các mô hình được sử dụng trong nghiên cứu này được công khai tại [GitHub repository](https://github.com/limpaulfin/HUB-Fong-VocabRetention-ML/) để đảm bảo tính minh bạch và khả năng tái tạo kết quả.
 
 Bộ dữ liệu được chia thành ba tập dữ liệu tương ứng với ba cặp ngôn ngữ khác nhau:
 
@@ -45,7 +45,7 @@ Mỗi dòng trong tập dữ liệu SLAM chứa thông tin về một lần th�
 -   Tập huấn luyện và tập phát triển chứa dữ liệu của cùng một nhóm học viên
 -   Tập kiểm tra chứa dữ liệu của các học viên khác, không xuất hiện trong tập huấn luyện và phát triển
 
-Trong nghiên cứu này, chúng tôi tập trung vào dữ liệu của học viên nói tiếng Tây Ban Nha học tiếng Anh (es_en) và học viên nói tiếng Pháp học tiếng Anh (fr_en), vì mục tiêu của nghiên cứu là dự đoán khả năng ghi nhớ từ vựng tiếng Anh.
+Trong nghiên cứu này, tôi tập trung vào dữ liệu của học viên nói tiếng Tây Ban Nha học tiếng Anh (es_en) và học viên nói tiếng Pháp học tiếng Anh (fr_en), vì mục tiêu của nghiên cứu là dự đoán khả năng ghi nhớ từ vựng tiếng Anh.
 
 ## 3.2. Xử lý dữ liệu và trích xuất đặc trưng
 
@@ -63,7 +63,7 @@ Các đặc trưng trực tiếp được trích xuất từ bộ dữ liệu SL
 
 ### 3.2.2. Suy ra thời gian ôn tập và tần suất lặp lại
 
-Từ các đặc trưng trực tiếp, chúng tôi suy ra các đặc trưng bổ sung:
+Từ các đặc trưng trực tiếp, tôi suy ra các đặc trưng bổ sung:
 
 -   **Thời gian ôn tập (review_time)**: Tính từ time_since_last_attempt bằng cách tổng các khoảng thời gian giữa các lần thử
 -   **Tần suất lặp lại (repetition_frequency)**: Số lần thử trung bình mỗi ngày, tính bằng num_attempts chia cho khoảng thời gian sử dụng ứng dụng
@@ -83,7 +83,7 @@ Quá trình làm sạch dữ liệu bao gồm các bước sau:
 
 ### 3.3.1. Tạo tập đặc trưng
 
-Sau khi trích xuất và làm sạch dữ liệu, chúng tôi kết hợp các đặc trưng thành một bảng dữ liệu hoàn chỉnh. Mỗi dòng trong bảng dữ liệu đại diện cho một lần thử của học viên đối với một token cụ thể, với các cột tương ứng với các đặc trưng đã trích xuất và suy ra.
+Sau khi trích xuất và làm sạch dữ liệu, tôi kết hợp các đặc trưng thành một bảng dữ liệu hoàn chỉnh. Mỗi dòng trong bảng dữ liệu đại diện cho một lần thử của học viên đối với một token cụ thể, với các cột tương ứng với các đặc trưng đã trích xuất và suy ra.
 
 ### 3.3.2. Chia tập dữ liệu
 

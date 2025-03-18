@@ -24,7 +24,7 @@ Các kết quả này cho thấy cả hai mô hình đều đạt độ chính x
 
 ## 5.2. Phân tích các yếu tố ảnh hưởng đến độ chính xác
 
-Dựa trên phân tích tầm quan trọng của đặc trưng từ cả hai mô hình, chúng tôi xác định được các yếu tố chính ảnh hưởng đến khả năng ghi nhớ từ vựng:
+Dựa trên phân tích tầm quan trọng của đặc trưng từ cả hai mô hình, tôi xác định được các yếu tố chính ảnh hưởng đến khả năng ghi nhớ từ vựng:
 
 ### 5.2.1. Loại bài tập (format)
 
@@ -67,7 +67,7 @@ Cả hai mô hình đều đạt độ chính xác cao (khoảng 85.8%), nhưng 
 
 ### 5.3.2. Cải thiện hiệu suất mô hình
 
-Để cải thiện hiệu suất của mô hình, đặc biệt là độ nhạy (Recall), chúng tôi đề xuất một số phương pháp sau:
+Để cải thiện hiệu suất của mô hình, đặc biệt là độ nhạy (Recall), tôi đề xuất một số phương pháp sau:
 
 1. **Cân bằng dữ liệu**:
 
@@ -102,17 +102,17 @@ Phân tích chi tiết các trường hợp false negatives cho thấy:
 
 ## 5.4. So sánh với các nghiên cứu tương tự
 
-So với các nghiên cứu tương tự trong lĩnh vực dự đoán khả năng ghi nhớ từ vựng, kết quả của chúng tôi có một số điểm đáng chú ý:
+So với các nghiên cứu tương tự trong lĩnh vực dự đoán khả năng ghi nhớ từ vựng, kết quả của tôi có một số điểm đáng chú ý:
 
--   **Độ chính xác tương đương**: Độ chính xác của mô hình chúng tôi (khoảng 85.8%) tương đương với các mô hình tiên tiến nhất trong các nghiên cứu trước đây.
+-   **Độ chính xác tương đương**: Độ chính xác của mô hình tôi (khoảng 85.8%) tương đương với các mô hình tiên tiến nhất trong các nghiên cứu trước đây.
 
--   **Tầm quan trọng của loại bài tập**: Nghiên cứu của chúng tôi nhấn mạnh tầm quan trọng của loại bài tập (đặc biệt là format_reverse_tap) trong việc dự đoán khả năng ghi nhớ, một yếu tố thường được bỏ qua trong các nghiên cứu trước đây.
+-   **Tầm quan trọng của loại bài tập**: Nghiên cứu của tôi nhấn mạnh tầm quan trọng của loại bài tập (đặc biệt là format_reverse_tap) trong việc dự đoán khả năng ghi nhớ, một yếu tố thường được bỏ qua trong các nghiên cứu trước đây.
 
--   **Giá trị thực tiễn**: Kết quả của chúng tôi có thể được áp dụng trực tiếp vào việc thiết kế các ứng dụng học tập ngôn ngữ, đặc biệt là trong việc lựa chọn loại bài tập và lên lịch ôn tập.
+-   **Giá trị thực tiễn**: Kết quả của tôi có thể được áp dụng trực tiếp vào việc thiết kế các ứng dụng học tập ngôn ngữ, đặc biệt là trong việc lựa chọn loại bài tập và lên lịch ôn tập.
 
 ## 5.5. So sánh với tỷ lệ ghi nhớ thực tế của Duolingo
 
-Trong phần này, chúng ta sẽ so sánh kết quả dự đoán của mô hình mà chúng ta đã xây dựng (với độ chính xác khoảng 85.8%) với thông tin thực tế từ Duolingo và các nghiên cứu liên quan.
+Trong phần này, tôi sẽ so sánh kết quả dự đoán của mô hình mà tôi đã xây dựng (với độ chính xác khoảng 85.8%) với thông tin thực tế từ Duolingo và các nghiên cứu liên quan.
 
 ### 5.5.1. Mô hình ghi nhớ từ vựng của Duolingo
 
@@ -128,13 +128,13 @@ Về hiệu quả, mô hình HLR có tỷ lệ lỗi dự đoán thấp hơn g�
 -   Tăng 1.7% cho bài học (lessons)
 -   Tăng 12% cho hoạt động tổng thể (overall activity)
 
-### 5.5.2. So sánh với mô hình của chúng ta
+### 5.5.2. So sánh với mô hình của nghiên cứu này
 
-Mô hình của chúng ta đạt độ chính xác (accuracy) khoảng 85.8% trong việc dự đoán khả năng ghi nhớ từ vựng, đây là một kết quả tương đối cao. Tuy nhiên, cần lưu ý rằng:
+Mô hình của nghiên cứu này đạt độ chính xác (accuracy) khoảng 85.8% trong việc dự đoán khả năng ghi nhớ từ vựng, đây là một kết quả tương đối cao. Tuy nhiên, cần lưu ý rằng:
 
-1. **Sự khác biệt về tiêu chí đánh giá**: Mô hình của chúng ta sử dụng accuracy làm tiêu chí đánh giá chính, trong khi Duolingo tập trung vào mean absolute error (MAE) và tỷ lệ quay lại của người dùng.
+1. **Sự khác biệt về tiêu chí đánh giá**: Mô hình của nghiên cứu này sử dụng accuracy làm tiêu chí đánh giá chính, trong khi Duolingo tập trung vào mean absolute error (MAE) và tỷ lệ quay lại của người dùng.
 
-2. **Sự khác biệt về mục tiêu**: Mô hình của chúng ta nhằm dự đoán khả năng ghi nhớ từ vựng, trong khi HLR của Duolingo tập trung vào việc tối ưu hóa lịch trình ôn tập.
+2. **Sự khác biệt về mục tiêu**: Mô hình của nghiên cứu này nhằm dự đoán khả năng ghi nhớ từ vựng, trong khi HLR của Duolingo tập trung vào việc tối ưu hóa lịch trình ôn tập.
 
 3. **Thời gian**: Dữ liệu SLAM được thu thập vào năm 2017, trong khi Duolingo đã có nhiều cải tiến đáng kể từ đó đến nay.
 
@@ -146,9 +146,9 @@ Nghiên cứu "Enhancing human learning via spaced repetition optimization" [^3]
 
 ### 5.5.4. Đánh giá và đề xuất
 
-Từ việc so sánh với thông tin thực tế của Duolingo, chúng ta có thể đưa ra một số nhận xét:
+Từ việc so sánh với thông tin thực tế của Duolingo, tôi có thể đưa ra một số nhận xét:
 
-1. **Độ chính xác của mô hình là hợp lý**: Mặc dù không có số liệu cụ thể về tỷ lệ ghi nhớ từ vựng từ Duolingo, nhưng độ chính xác 85.8% của mô hình chúng ta là một kết quả khả quan và đáng tin cậy.
+1. **Độ chính xác của mô hình là hợp lý**: Mặc dù không có số liệu cụ thể về tỷ lệ ghi nhớ từ vựng từ Duolingo, nhưng độ chính xác 85.8% của mô hình nghiên cứu này là một kết quả khả quan và đáng tin cậy.
 
 2. **Cần thu thập thêm dữ liệu mới**: Dữ liệu SLAM từ năm 2017 có thể không phản ánh đầy đủ các cải tiến mới nhất của Duolingo. Thu thập và phân tích dữ liệu mới sẽ giúp cập nhật mô hình chính xác hơn.
 
@@ -157,7 +157,7 @@ Từ việc so sánh với thông tin thực tế của Duolingo, chúng ta có 
     - Đánh giá tác động của các loại bài tập mới mà Duolingo đã giới thiệu sau năm 2017
     - Xem xét các yếu tố xã hội (như tính cạnh tranh, tương tác với bạn bè) đến việc ghi nhớ từ vựng
 
-Tóm lại, mô hình của chúng ta cho kết quả khả quan (85.8% accuracy) nhưng cần được cập nhật và bổ sung thêm các đặc trưng mới để phản ánh chính xác hơn tình hình hiện tại. Việc so sánh với thông tin thực tế của Duolingo giúp chúng ta định hướng cải tiến mô hình trong tương lai.
+Tóm lại, mô hình của nghiên cứu này cho kết quả khả quan (85.8% accuracy) nhưng cần được cập nhật và bổ sung thêm các đặc trưng mới để phản ánh chính xác hơn tình hình hiện tại. Việc so sánh với thông tin thực tế của Duolingo giúp tôi định hướng cải tiến mô hình trong tương lai.
 
 [^1]: Settles, B. (2016). How we learn how you learn. Retrieved from https://blog.duolingo.com/how-we-learn-how-you-learn/
 [^2]: Strivecloud. (2023). How Duolingo uses gamification to improve user retention. Retrieved from https://strivecloud.io/blog/gamification-examples-boost-user-retention-duolingo/

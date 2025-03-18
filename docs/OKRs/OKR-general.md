@@ -50,15 +50,15 @@
 -   ✅ **(Hoàn thành)** Cập nhật README.md để hướng dẫn tải dữ liệu SLAM thay vì giải nén
 -   ✅ **(Hoàn thành)** Điều chỉnh .gitignore để duy trì cấu trúc thư mục mà không bao gồm file dữ liệu lớn
 -   [ ] Đảm bảo tài liệu mã nguồn đầy đủ và dễ hiểu
--   [ ] Kiểm tra và đảm bảo tính nhất quán của mã nguồn
+-   [x] Kiểm tra và đảm bảo tính nhất quán của mã nguồn
 
 ## Mục tiêu 6: Chỉnh sửa ngôn ngữ trong tiểu luận
 
 ### Các kết quả chính (Key Results):
 
--   [ ] Rà soát và thay thế các từ "chúng tôi" bằng ngôn ngữ phù hợp với tiểu luận cá nhân
--   [ ] Đảm bảo tính nhất quán về ngôi kể trong toàn bộ tài liệu
--   [ ] Áp dụng phong cách viết học thuật phù hợp với tiểu luận thạc sĩ
+-   [x] Rà soát và thay thế các từ "chúng tôi" bằng ngôn ngữ phù hợp với tiểu luận cá nhân
+-   [x] Đảm bảo tính nhất quán về ngôi kể trong toàn bộ tài liệu
+-   [x] Áp dụng phong cách viết học thuật phù hợp với tiểu luận thạc sĩ
 
 ## Ghi chú
 
