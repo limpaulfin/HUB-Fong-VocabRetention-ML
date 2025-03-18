@@ -13,6 +13,8 @@ Chức năng chính và mục đích của file:
 - Trực quan hóa kết quả dự đoán
 - Tạo biểu đồ tương tác để phân tích kết quả
 - Tạo dashboard để hiển thị kết quả
+
+Copyright © 2024 Lâm Thanh Phong - 020201240024 - Học viên cao học HUB
 """
 
 import os

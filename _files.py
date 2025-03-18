@@ -13,6 +13,8 @@ Files liên quan:
 - .files-{module}.md: File output cho mỗi module
 - Các file Python trong theme
 
+Copyright © 2024 Lâm Thanh Phong - 020201240024 - Học viên cao học HUB
+
 Lưu ý khi phát triển:
 1. Bảo trì pattern timestamp:
    - Cập nhật các pattern trong should_exclude_file()

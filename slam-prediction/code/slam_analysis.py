@@ -21,6 +21,8 @@ Mô tả các đặc trưng (features) và biến được sử dụng:
 - num_attempts: Số lần người dùng đã thử từ vựng này
 - time_since_last_attempt: Thời gian kể từ lần thử gần nhất
 - target: Biến mục tiêu (1 nếu người dùng nhớ từ, 0 nếu quên)
+
+Copyright © 2024 Lâm Thanh Phong - 020201240024 - Học viên cao học HUB
 """
 
 import os
