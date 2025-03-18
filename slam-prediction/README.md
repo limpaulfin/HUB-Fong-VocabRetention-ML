@@ -7,22 +7,15 @@ Dự án này phân tích dữ liệu SLAM (Second Language Acquisition Modeling
 ```
 slam-prediction/
 ├── code/                          # Thư mục chứa mã nguồn
-│   ├── extract_data.py            # Script giải nén dữ liệu
 │   ├── slam_analysis.py           # Script phân tích chính
 │   └── visualize_results.py       # Script trực quan hóa kết quả
 │
 ├── data/                          # Thư mục chứa dữ liệu
-│   ├── dataverse_files/           # Dữ liệu SLAM gốc
-│   │   ├── data_en_es.tar/        # Dữ liệu tiếng Anh-Tây Ban Nha
-│   │   ├── data_es_en.tar/        # Dữ liệu tiếng Tây Ban Nha-Anh
-│   │   ├── data_fr_en.tar/        # Dữ liệu tiếng Pháp-Anh
-│   │   └── starter_code.tar/      # Mã khởi động từ Duolingo
-│   │
-│   └── extracted_data/            # Thư mục chứa dữ liệu đã giải nén (sẽ được tạo)
-│       ├── data_en_es/            # Dữ liệu tiếng Anh-Tây Ban Nha đã giải nén
-│       ├── data_es_en/            # Dữ liệu tiếng Tây Ban Nha-Anh đã giải nén
-│       ├── data_fr_en/            # Dữ liệu tiếng Pháp-Anh đã giải nén
-│       └── starter_code/          # Mã khởi động đã giải nén
+│   └── dataverse_files/           # Cấu trúc thư mục cho dữ liệu SLAM
+│       ├── data_en_es.tar/        # Cấu trúc thư mục cho dữ liệu tiếng Anh-Tây Ban Nha
+│       ├── data_es_en.tar/        # Cấu trúc thư mục cho dữ liệu tiếng Tây Ban Nha-Anh
+│       ├── data_fr_en.tar/        # Cấu trúc thư mục cho dữ liệu tiếng Pháp-Anh
+│       └── starter_code.tar/      # Mã khởi động từ Duolingo
 │
 ├── results/                       # Thư mục chứa kết quả phân tích (sẽ được tạo)
 │   ├── feature_importance.png     # Biểu đồ tầm quan trọng của đặc trưng
@@ -49,22 +42,32 @@ slam-prediction/
 pip install pandas numpy matplotlib seaborn scikit-learn joblib
 ```
 
+## Tải dữ liệu SLAM
+
+**Lưu ý quan trọng**: Các file dữ liệu lớn không được lưu trữ trong repository này do giới hạn kích thước của GitHub. Bạn cần tải dữ liệu SLAM từ trang Dataverse của Duolingo và đặt vào cấu trúc thư mục tương ứng.
+
+### Các bước tải dữ liệu:
+
+1. Truy cập trang web Dataverse của Duolingo SLAM: [https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/8SWHNO](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/8SWHNO)
+
+2. Tải xuống các file dữ liệu sau:
+
+    - `data_en_es.tar`
+    - `data_es_en.tar`
+    - `data_fr_en.tar`
+    - `starter_code.tar`
+
+3. Giải nén các file tar vào cấu trúc thư mục tương ứng trong `slam-prediction/data/dataverse_files/`:
+    - Giải nén `data_en_es.tar` vào thư mục `data_en_es.tar/`
+    - Giải nén `data_es_en.tar` vào thư mục `data_es_en.tar/`
+    - Giải nén `data_fr_en.tar` vào thư mục `data_fr_en.tar/`
+    - Giải nén `starter_code.tar` vào thư mục `starter_code.tar/`
+
 ## Các bước thực hiện
 
-### 1. Giải nén dữ liệu
+### 1. Chạy phân tích dữ liệu
 
-Trước tiên, cần giải nén dữ liệu SLAM từ các file tar:
-
-```bash
-cd slam-prediction/code
-python extract_data.py
-```
-
-Script này sẽ giải nén các file tar trong thư mục `data/dataverse_files` vào thư mục `data/extracted_data`.
-
-### 2. Chạy phân tích dữ liệu
-
-Sau khi giải nén dữ liệu, chạy script phân tích:
+Sau khi tải và giải nén dữ liệu vào cấu trúc thư mục thích hợp, chạy script phân tích:
 
 ```bash
 cd slam-prediction/code
@@ -73,13 +76,13 @@ python slam_analysis.py
 
 Script này sẽ:
 
--   Đọc dữ liệu SLAM từ thư mục `data/extracted_data`
+-   Đọc dữ liệu SLAM từ thư mục `data/dataverse_files`
 -   Trích xuất đặc trưng từ dữ liệu
 -   Huấn luyện và đánh giá các mô hình Logistic Regression và Random Forest
 -   Tạo các biểu đồ và báo cáo phân tích
 -   Lưu kết quả vào thư mục `results`
 
-### 3. Trực quan hóa kết quả
+### 2. Trực quan hóa kết quả
 
 Sau khi phân tích dữ liệu, bạn có thể tạo thêm các biểu đồ trực quan hóa:
 
@@ -150,3 +153,4 @@ Kết quả phân tích sẽ cho thấy:
 
 -   Quá trình phân tích có thể mất một thời gian do kích thước lớn của dữ liệu SLAM.
 -   Đảm bảo có đủ dung lượng ổ đĩa, vì dữ liệu SLAM và kết quả phân tích có thể chiếm nhiều không gian.
+-   Các file dữ liệu lớn (như `en_es.slam.20190204.train`, `en_es.slam.20190204.dev`, v.v.) không được lưu trữ trong repository này nhưng cần thiết để chạy mã phân tích. Hãy tải chúng từ nguồn được đề cập ở trên.
