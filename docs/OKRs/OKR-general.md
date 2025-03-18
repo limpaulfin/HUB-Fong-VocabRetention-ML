@@ -43,16 +43,7 @@
 -   [ ] Nêu yêu cầu và đề xuất áp dụng mô hình vào hệ thống LMS riêng
 -   [ ] Xây dựng hướng phát triển dịch vụ tư vấn dựa trên kết quả nghiên cứu
 
-## Mục tiêu 5: Chuẩn bị bảo vệ tiểu luận
-
-### Các kết quả chính (Key Results):
-
--   [ ] Tạo bài thuyết trình PowerPoint tóm tắt nghiên cứu (10-15 slides)
--   [ ] Chuẩn bị demo của mô hình học máy để minh họa quá trình dự đoán
--   [ ] Luyện tập trình bày (thời gian: 15-20 phút)
--   [ ] Chuẩn bị câu trả lời cho các câu hỏi dự kiến từ giảng viên
-
-## Mục tiêu 6: Hoàn thiện kỹ thuật và tài liệu mã nguồn
+## Mục tiêu 5: Hoàn thiện kỹ thuật và tài liệu mã nguồn
 
 ### Các kết quả chính (Key Results):
 
@@ -60,9 +51,8 @@
 -   ✅ **(Hoàn thành)** Điều chỉnh .gitignore để duy trì cấu trúc thư mục mà không bao gồm file dữ liệu lớn
 -   [ ] Đảm bảo tài liệu mã nguồn đầy đủ và dễ hiểu
 -   [ ] Kiểm tra và đảm bảo tính nhất quán của mã nguồn
--   [ ] Bổ sung các phần comment giải thích vào mã nguồn
 
-## Mục tiêu 7: Chỉnh sửa ngôn ngữ trong tiểu luận
+## Mục tiêu 6: Chỉnh sửa ngôn ngữ trong tiểu luận
 
 ### Các kết quả chính (Key Results):
 
@@ -73,9 +63,36 @@
 ## Ghi chú
 
 -   Tất cả mã nguồn và dữ liệu phải được lưu trữ trong thư mục `slam-prediction/`
--   Tiểu luận phải tuân thủ định dạng quy định và có độ dài 30-40 trang
+-   Tiểu luận có độ dài khoảng 15 trang nội dung chính
 -   Deadline cuối cùng: 30/04/2024
 -   Theo thông lệ viết tiểu luận cá nhân cấp thạc sĩ, cần sử dụng ngôn ngữ phù hợp thay vì dùng từ "chúng tôi"
+
+## Kế hoạch thực hiện
+
+### Tuần 1 (20/03 - 26/03/2024)
+
+1. **Chỉnh sửa ngôn ngữ trong tiểu luận**
+
+    - Rà soát các file trong thư mục docs/tieu-luan/02-chapters
+    - Thay thế từ "chúng tôi" bằng ngôn ngữ phù hợp với tiểu luận cá nhân
+    - Đảm bảo tính nhất quán về ngôi kể trong toàn bộ tài liệu
+
+2. **Bổ sung nội dung vào Chương 6**
+    - Bổ sung mục về yêu cầu và đề xuất áp dụng mô hình vào hệ thống LMS riêng
+    - Bổ sung mục về hướng phát triển dịch vụ tư vấn dựa trên kết quả nghiên cứu
+
+### Tuần 2 (27/03 - 02/04/2024)
+
+1. **Hoàn thiện mã nguồn và tài liệu kỹ thuật**
+
+    - Đảm bảo tài liệu mã nguồn đầy đủ và dễ hiểu
+    - Kiểm tra và đảm bảo tính nhất quán của mã nguồn
+    - Cập nhật README.md với các thông tin mới nếu cần
+
+2. **Rà soát lại toàn bộ tiểu luận**
+    - Kiểm tra tính nhất quán giữa các chương
+    - Kiểm tra lỗi chính tả, ngữ pháp
+    - Kiểm tra tài liệu tham khảo
 
 ## Cập nhật tiến độ
 
