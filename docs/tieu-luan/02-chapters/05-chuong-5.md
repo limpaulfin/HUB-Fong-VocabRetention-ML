@@ -22,9 +22,21 @@ Các kết quả này cho thấy cả hai mô hình đều đạt độ chính x
 
 -   **AUC-ROC**: Random Forest (0.72) có khả năng phân biệt tốt hơn một chút so với Logistic Regression (0.69).
 
+![So sánh hiệu suất của các mô hình](../images/model_comparison.png)
+
+_Hình 5.1: So sánh hiệu suất của mô hình Logistic Regression và Random Forest trên các chỉ số đánh giá_
+
+![Ma trận nhầm lẫn](../images/confusion_matrix.png)
+
+_Hình 5.2: Ma trận nhầm lẫn của mô hình Logistic Regression (trái) và Random Forest (phải)_
+
 ## 5.2. Phân tích các yếu tố ảnh hưởng đến độ chính xác
 
 Dựa trên phân tích tầm quan trọng của đặc trưng từ cả hai mô hình, tôi xác định được các yếu tố chính ảnh hưởng đến khả năng ghi nhớ từ vựng:
+
+![Tầm quan trọng của các đặc trưng](../images/feature_importance.png)
+
+_Hình 5.3: Tầm quan trọng của các đặc trưng trong mô hình Logistic Regression (trên) và Random Forest (dưới)_
 
 ### 5.2.1. Loại bài tập (format)
 
@@ -52,6 +64,10 @@ Dựa trên phân tích tầm quan trọng của đặc trưng từ cả hai mô
 
 -   Các đặc trưng về loại từ như **pos_PRON** (đại từ), **pos_ADJ** (tính từ) có tầm quan trọng vừa phải trong cả hai mô hình.
 -   Điều này cho thấy một số loại từ có thể dễ ghi nhớ hơn các loại khác.
+
+![Ma trận tương quan giữa các đặc trưng](../images/correlation_matrix.png)
+
+_Hình 5.4: Ma trận tương quan giữa các đặc trưng và biến mục tiêu_
 
 ## 5.3. Thảo luận và cải thiện
 

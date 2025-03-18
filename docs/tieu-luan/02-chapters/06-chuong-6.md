@@ -4,6 +4,10 @@
 
 Dựa trên kết quả của mô hình Random Forest và Logistic Regression với độ chính xác khoảng 85.8%, tôi đề xuất các ứng dụng thực tế sau đây:
 
+![Tầm quan trọng của các đặc trưng](../images/feature_importance.png)
+
+_Hình 6.1: Tầm quan trọng của các đặc trưng trong việc dự đoán khả năng ghi nhớ từ vựng_
+
 ### 6.1.1. Cá nhân hóa lịch trình ôn tập
 
 Mô hình có thể được tích hợp vào các ứng dụng học ngôn ngữ để cá nhân hóa lịch trình ôn tập của học viên:
@@ -24,6 +28,10 @@ Dựa trên kết quả phân tích tầm quan trọng của đặc trưng, tôi
 
 -   **Thiết kế bài tập mới**: Phát triển các loại bài tập mới dựa trên các đặc điểm của bài tập hiệu quả, nhằm tăng cường khả năng ghi nhớ từ vựng.
 
+![Ma trận tương quan giữa các đặc trưng](../images/correlation_matrix.png)
+
+_Hình 6.2: Ma trận tương quan giữa các đặc trưng cho thấy mối liên hệ giữa các yếu tố ảnh hưởng đến khả năng ghi nhớ từ vựng_
+
 ### 6.1.3. Phân tích tiến độ học tập
 
 Mô hình có thể được sử dụng để phân tích tiến độ học tập của học viên và cung cấp phản hồi chi tiết:
@@ -37,6 +45,10 @@ Mô hình có thể được sử dụng để phân tích tiến độ học t�
 ## 6.2. Đề xuất cải tiến trong tương lai
 
 Dựa trên kết quả nghiên cứu và các hạn chế của mô hình hiện tại, tôi đề xuất các hướng cải tiến sau đây:
+
+![So sánh hiệu suất các mô hình](../images/model_comparison.png)
+
+_Hình 6.3: So sánh hiệu suất của các mô hình học máy cho thấy tiềm năng cải tiến_
 
 ### 6.2.1. Cải tiến về dữ liệu
 
@@ -61,6 +73,10 @@ Dựa trên kết quả nghiên cứu và các hạn chế của mô hình hiệ
 -   **Đặc trưng ngữ cảnh**: Khai thác thông tin về ngữ cảnh sử dụng từ vựng (ví dụ: từ xuất hiện trong câu, đoạn văn) để đánh giá ảnh hưởng của ngữ cảnh đến khả năng ghi nhớ.
 
 -   **Đặc trưng đa phương tiện**: Phân tích ảnh hưởng của các yếu tố đa phương tiện (hình ảnh, âm thanh) đến khả năng ghi nhớ từ vựng và xây dựng các mô hình dự đoán kết hợp thông tin từ nhiều nguồn.
+
+![Ma trận nhầm lẫn của mô hình](../images/confusion_matrix.png)
+
+_Hình 6.4: Ma trận nhầm lẫn cho thấy các lĩnh vực cần cải thiện trong mô hình dự đoán_
 
 ## 6.3. Kết luận
 
