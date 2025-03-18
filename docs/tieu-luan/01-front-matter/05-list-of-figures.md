@@ -2,19 +2,15 @@
 
 ## Danh mục hình ảnh
 
--   **Hình 2.1**: Minh họa hàm sigmoid trong Logistic Regression
--   **Hình 2.2**: Cấu trúc của một cây quyết định trong Random Forest
--   **Hình 3.1**: Quy trình thu thập và xử lý dữ liệu SLAM
--   **Hình 4.1**: Kiến trúc mô hình dự đoán khả năng ghi nhớ từ vựng
--   **Hình 5.1**: Biểu đồ so sánh hiệu suất của các mô hình
--   **Hình 5.2**: Biểu đồ thể hiện tầm quan trọng của các đặc trưng
--   **Hình 6.1**: Giao diện ứng dụng học từ vựng tích hợp mô hình dự đoán
+-   **Hình 5.1**: So sánh hiệu suất của mô hình Logistic Regression và Random Forest trên các chỉ số đánh giá
+-   **Hình 5.2**: Ma trận nhầm lẫn của mô hình Logistic Regression (trái) và Random Forest (phải)
+-   **Hình 5.3**: Tầm quan trọng của các đặc trưng trong mô hình Logistic Regression (trên) và Random Forest (dưới)
+-   **Hình 6.1**: Tầm quan trọng của các đặc trưng trong việc dự đoán khả năng ghi nhớ từ vựng
+-   **Hình 6.2**: Ma trận tương quan giữa các đặc trưng cho thấy mối liên hệ giữa các yếu tố ảnh hưởng đến khả năng ghi nhớ từ vựng
 
 ## Danh mục bảng biểu
 
--   **Bảng 2.1**: So sánh Logistic Regression và Random Forest
--   **Bảng 3.1**: Mô tả các trường dữ liệu trong bộ dữ liệu SLAM
--   **Bảng 4.1**: Các đặc trưng được sử dụng trong mô hình
+-   **Bảng 2.3**: So sánh Logistic Regression và Random Forest
+-   **Bảng 3.1**: Cấu trúc dữ liệu SLAM
+-   **Bảng 4.1**: Thứ tự tầm quan trọng của các đặc trưng
 -   **Bảng 5.1**: Kết quả đánh giá hiệu suất của các mô hình
--   **Bảng 5.2**: Ảnh hưởng của tần suất lặp lại đến độ chính xác
--   **Bảng 5.3**: Ảnh hưởng của thời gian ôn tập đến độ chính xác

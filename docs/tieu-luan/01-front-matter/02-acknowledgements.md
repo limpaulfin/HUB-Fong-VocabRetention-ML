@@ -1,3 +1,9 @@
+# Cam kết về tính nguyên bản
+
+Tôi xin cam kết rằng toàn bộ nội dung của tiểu luận này là kết quả nghiên cứu độc lập của cá nhân tôi. Các ý tưởng, phân tích và kết luận trong tiểu luận đều là thành quả từ quá trình nghiên cứu của riêng tôi. Tất cả các trích dẫn và tham khảo từ các nguồn khác đều được ghi rõ nguồn gốc theo quy định.
+
+Tôi hoàn toàn chịu trách nhiệm về tính trung thực và độ tin cậy của các nội dung được trình bày trong tiểu luận này.
+
 # Lời cảm ơn
 
 Tôi xin gửi lời cảm ơn chân thành đến TS. Nguyễn Hoài Đức, giảng viên học phần Khoa học phân tích dự đoán, đã tận tình hướng dẫn và truyền đạt kiến thức quý báu trong suốt quá trình học tập và thực hiện tiểu luận này.

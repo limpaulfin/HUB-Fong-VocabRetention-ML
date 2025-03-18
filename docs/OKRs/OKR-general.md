@@ -1,5 +1,17 @@
 # OKR - Objectives and Key Results
 
+## Yêu cầu về độ dài tiểu luận
+
+Tiểu luận yêu cầu 15 trang A4 (±10%). Dưới đây là hướng dẫn số lượng từ phù hợp:
+
+| Định dạng     | Số từ/trang | Tổng số từ (15 trang) | Với dao động ±10% |
+| ------------- | ----------- | --------------------- | ----------------- |
+| Giãn dòng đôi | 250-300     | 3,750-4,500           | 3,375-4,950       |
+| Giãn dòng 1.5 | 350-400     | 5,250-6,000           | 4,725-6,600       |
+| Giãn dòng đơn | 450-500     | 6,750-7,500           | 6,075-8,250       |
+
+**Khuyến nghị**: Với định dạng học thuật tiêu chuẩn (Times New Roman/Arial, cỡ chữ 12pt, giãn dòng đôi), số lượng từ phù hợp cho tiểu luận 15 trang A4 là 4,000-4,500 từ.
+
 ## Mục tiêu 1: Phân tích dữ liệu SLAM của Duolingo để dự đoán khả năng ghi nhớ từ vựng
 
 ### Các kết quả chính (Key Results):
@@ -40,8 +52,8 @@
 -   ✅ **(Hoàn thành)** Phân tích sự phát triển của Duolingo từ 2017 đến nay
 -   ✅ **(Hoàn thành)** Cập nhật tài liệu tham khảo với các nghiên cứu và bài viết mới về Duolingo
 -   ✅ **(Hoàn thành)** Di chuyển OKR-thinh-feedback.md vào thư mục \_done sau khi hoàn thành các mục tiêu chính
--   [ ] Nêu yêu cầu và đề xuất áp dụng mô hình vào hệ thống LMS riêng
--   [ ] Xây dựng hướng phát triển dịch vụ tư vấn dựa trên kết quả nghiên cứu
+-   ✅ **(Hoàn thành)** Nêu yêu cầu và đề xuất áp dụng mô hình vào hệ thống LMS riêng
+-   ✅ **(Hoàn thành)** Xây dựng hướng phát triển dịch vụ tư vấn dựa trên kết quả nghiên cứu
 
 ## Mục tiêu 5: Hoàn thiện kỹ thuật và tài liệu mã nguồn
 
@@ -60,12 +72,26 @@
 -   [x] Đảm bảo tính nhất quán về ngôi kể trong toàn bộ tài liệu
 -   [x] Áp dụng phong cách viết học thuật phù hợp với tiểu luận thạc sĩ
 
+## Mục tiêu 7: Cắt giảm nội dung tiểu luận để phù hợp với giới hạn độ dài
+
+### Các kết quả chính (Key Results):
+
+-   ✅ **(Hoàn thành)** Phân tích và xác định nội dung hiện có và độ dài cần cắt giảm
+-   ✅ **(Hoàn thành)** Cắt giảm Chương 3 về quy trình thu thập và xử lý dữ liệu giữ lại các thông tin cốt lõi
+-   ✅ **(Hoàn thành)** Cắt giảm Chương 4 về xây dựng mô hình tập trung vào kết quả chính
+-   ✅ **(Hoàn thành)** Cắt giảm Chương 5 về đánh giá hiệu suất bỏ bớt chi tiết phân tích sâu
+-   ✅ **(Hoàn thành)** Cắt giảm Chương 6 về ứng dụng thực tế và đề xuất trong tương lai
+-   ✅ **(Hoàn thành)** Đảm bảo tổng độ dài sau cắt giảm khoảng 4,500-6,000 từ (phù hợp với định dạng giãn dòng 1.5)
+-   ✅ **(Hoàn thành)** Kiểm tra đảm bảo văn phong học thuật và tính mạch lạc sau cắt giảm
+
 ## Ghi chú
 
 -   Tất cả mã nguồn và dữ liệu phải được lưu trữ trong thư mục `slam-prediction/`
 -   Tiểu luận có độ dài khoảng 15 trang nội dung chính
 -   Deadline cuối cùng: 30/04/2024
 -   Theo thông lệ viết tiểu luận cá nhân cấp thạc sĩ, cần sử dụng ngôn ngữ phù hợp thay vì dùng từ "chúng tôi"
+-   Cam kết về tính nguyên bản: Tất cả nội dung, ý tưởng và phân tích trong tiểu luận là kết quả nghiên cứu độc lập của tác giả. Các trích dẫn và tham khảo đều được ghi rõ nguồn gốc theo quy định.
+-   Tài liệu tham khảo: Cần có đầy đủ thông tin về tác giả, năm xuất bản, tên tài liệu. URL không bắt buộc nhưng nên thêm vào nếu có để người đọc dễ dàng truy cập nguồn tài liệu.
 
 ## Kế hoạch thực hiện
 
@@ -78,8 +104,14 @@
     - Đảm bảo tính nhất quán về ngôi kể trong toàn bộ tài liệu
 
 2. **Bổ sung nội dung vào Chương 6**
+
     - Bổ sung mục về yêu cầu và đề xuất áp dụng mô hình vào hệ thống LMS riêng
     - Bổ sung mục về hướng phát triển dịch vụ tư vấn dựa trên kết quả nghiên cứu
+
+3. **Cắt giảm nội dung tiểu luận**
+    - Xác định nội dung cần cắt giảm trong mỗi chương
+    - Đảm bảo giữ lại thông tin cốt lõi và kết quả chính
+    - Cân đối nội dung giữa các chương
 
 ### Tuần 2 (27/03 - 02/04/2024)
 
@@ -101,3 +133,7 @@
 -   17/03/2024: Nhận được góp ý từ anh Thịnh, tạo tài liệu cấu trúc và OKR mới
 -   18/03/2024: Hoàn thành nghiên cứu và bổ sung thông tin về tỷ lệ ghi nhớ, sự phát triển của Duolingo, và cập nhật tài liệu tham khảo
 -   19/03/2024: Cập nhật README, điều chỉnh hướng dẫn tải dữ liệu, xác định yêu cầu về ngôn ngữ trong tiểu luận, di chuyển OKR-thinh-feedback.md vào thư mục \_done sau khi hoàn thành hai mục tiêu chính
+-   20/03/2024: Bổ sung cam kết về tính nguyên bản và quy định về tài liệu tham khảo vào OKR
+-   21/03/2024: Cập nhật danh mục hình ảnh và bảng biểu trong file 05-list-of-figures.md để phản ánh chính xác nội dung thực tế của tiểu luận
+-   22/03/2024: Xác định độ dài hiện tại của tiểu luận và lập kế hoạch cắt giảm nội dung phù hợp với giới hạn 15 trang A4
+-   23/03/2024: Hoàn thành cắt giảm nội dung tất cả các chương, đảm bảo giữ lại thông tin cốt lõi và đạt giới hạn độ dài phù hợp
